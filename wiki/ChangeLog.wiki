@@ -25,6 +25,11 @@ GAL_ROCK_FAIL_ADMINPRESENT = The "rock the vote" feature is disabled when an adm
 LANG FILE ADDITION
 GAL_LISTMAPS_NOMAPS = There are no maps available to be nominated.
 }}}
+  * Added 0-byte files into otherwise empty */data/galileo* folder that are normally created by Galileo later so that admins don't think the folder should be deleted.
+  * Fixed error that occurred when "listmaps" was called and no maps could be nominated.
+  * Fixed incorrect registered CVAR value for _gal_nom_mapfile_ by changing "mapcycle" to "mapcycle.txt".
+  * Changed method of specifying a "groups" file and added an option to randomize the order in which the contents of a "groups" file is read.
+  * Added referenced, but missing, color code for grey.
 
 =2009-02-26 | v1.1.290=
 
