@@ -1,13 +1,9 @@
 #summary Log of changes to the plugin.
-#sidebar TableOfContents
-
-= Introduction =
 
 This is the log of changes to the plugin throughout it's life. Most recent changes are at the top.
+----
 
-= Details =
-
-==2009-02-26 | v1.1.290==
+=2009-02-26  |  v1.1.290=
 
   * Added a check for valid map when populating the various map listings from map list files.
   * Fixed error whem empty server map file doesn't exist.
@@ -29,6 +25,6 @@ GAL_STANDARD_UNKNOWNMOD
 }}}
   * Fixed the "vote filler groups" feature that was previously working incorrectly.
 
-==2008-SEP-12 | v1.0.255==
+=2008-09-12  |  v1.0.255=
 
   * Initial release.
