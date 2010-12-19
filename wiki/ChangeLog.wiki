@@ -1,7 +1,7 @@
-#summary Log of changes to the plugin.
+#summary This is the log of changes to the plugin throughout it's life.
 #labels Featured
 
-This is the log of changes to the plugin throughout it's life. Most recent changes are at the top.
+Most recent changes are at the top.
 ----
 
 =2009-02-26 | v1.1.290=
