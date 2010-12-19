@@ -1,0 +1,34 @@
+#summary Log of changes to the plugin.
+#sidebar TableOfContents
+
+= Introduction =
+
+This is the log of changes to the plugin throughout it's life. Most recent changes are at the top.
+
+= Details =
+
+==[2009-02-26] v1.1.290==
+
+  * Added a check for valid map when populating the various map listings from map list files.
+  * Fixed error whem empty server map file doesn't exist.
+  * Fixed issue whereas Galileo would set the time limit to 0 in the course of it's regular activities but then sometimes not reset it to the original time limit afterwards.
+  * No longer tries to print menus in color if the game mod doesn't support colored menus.
+  * Fixed possible RTV exploit by introducing a delay before a single player can RTV after a map change. It's the lesser of either 2 minutes or the value of _gal_rtv_wait_.
+  * Added additional information to comments for_ gal_nom_mapfile_,_ gal_vote_mapfile_, and _gal_emptyserver_mapfile_ in *galileo.cfg*.
+  * Changed default for _gal_nom_prefixes_ from 1 to 0. In other words, the prefix functionality will be turned off by default.
+  * Will no longer overwrite an existing menu. This means if a player has another menu open when the map vote starts, they won't see the map vote until the other menu is closed. It also means that, after a player voted and if the server is showing the vote progress, if another menu overwrites Galileo's, the progress won't be shown again until the other menu has been closed. This only affects people that show the in-progress vote status.
+  * Now obeys a setting of "0" for _gal_endofmapvote_. Would previously erroneously present a vote regardless of the setting.
+  * New CVAR, _gal_sounds_mute_, to indicate if any of the sentences spoken during various events are muted. See *galileo.cfg* for more information.
+  * Added code to handle automated version info from SVN. This is of no consequence to anyone but me really, but I wanted to include it in the change log since it actually involves a change to the code.
+  * Removed benign code that was prepped for feature utilizing standard maps of each mod. There is no longer any plans to add any information regarding standard maps as I see no use for it.
+  * Removed the following language keys:
+{{{ 
+GAL_STANDARD_NOTFOUND
+GAL_STANDARD_TOOMANY
+GAL_STANDARD_UNKNOWNMOD
+}}}
+  * Fixed the "vote filler groups" feature that was previously working incorrectly.
+
+==[2008-SEP-12] v1.0.255==
+
+  * Initial release.
