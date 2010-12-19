@@ -7,7 +7,7 @@ Most recent changes are at the top.
 =unreleased | v1.2.xxx=
 
   * Fixed "invalid cellvector handle provided" error when nominating maps.
-  * Removed the need to include "[groups]" as the very first line when using a "groups" file.
+  * Removed the need to include "`[`groups`]`" as the very first line when using a "groups" file.
   * Added _gal_mapfilestyle_ CVAR to indicate the style of the file specified by _gal_mapfile_.
 {{{
 1 - maps file: one map per line, without the ".bsp" extensions
