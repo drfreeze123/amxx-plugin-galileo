@@ -15,10 +15,9 @@ Most recent changes are at the top.
 3 - groups file: quantity of maps for each group, on separate lines (groups will be filled in random order, not as listed)
 }}}
   * Added ability to disable the "RTV" feature when an admin is present.
-{{{
+<code>
 LANG FILE ADDITION
-GAL_ROCK_FAIL_ADMINPRESENT = The "rock the vote" feature is disabled when an admin is present.
-}}}
+GAL_ROCK_FAIL_ADMINPRESENT = The "rock the vote" feature is disabled when an admin is present.</code>
   * New CVAR, _rtv_disableFlags_, to indicate if the "rock the vote" feature is disabled while players with the specified standard access flags are in game.
   * Fixed error that occurred when "listmaps" was called and no maps could be nominated.
 {{{
