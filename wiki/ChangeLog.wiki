@@ -1,4 +1,4 @@
-#summary This is the log of changes to the plugin throughout it's life.
+#summary The log of changes to the plugin throughout it's life.
 #labels Featured
 
 Most recent changes are at the top.
