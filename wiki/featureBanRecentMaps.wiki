@@ -15,7 +15,7 @@
 
   Default value is "*3*".
 
-  There is a cap defined by the "MAX_RECENT_MAP_CNT" constant in the SMA. It is set to "*16*" by default. It's not recommended but it can be safely changed if needed. The value of this CVAR needs to be equal to or less than the value of "MAX_RECENT_MAP_CNT".
+  There is a cap defined by the "MAX_RECENT_MAP_CNT" constant in the SMA. It is set to "*16*" by default. It's not recommended but it can be safely changed if needed. The value of this CVAR needs to be less than or equal to the value of "MAX_RECENT_MAP_CNT".
 
   == gal_banrecentstyle <<sub>[cvarNotations i]</sub>style> ==
   Indicates the style in which the recent maps are displayed when a player uses the "*recentmaps*" say command.
