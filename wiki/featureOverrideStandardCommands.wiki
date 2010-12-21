@@ -10,31 +10,29 @@
 
   == gal_cmd_votemap <<sub>[cvarNotations i]</sub>behavior> ==
   Indicates how the standard HL1 "*votemap*" command should function.
-
-  Default value is "*0*".
 {{{
 0 - disable
 1 - behave normally
 }}}
+  Default value is "*0*".
 
   == gal_cmd_listmaps <<sub>[cvarNotations i]</sub>behavior> ==
   Indicates how the standard HL1 "*listmaps*" command should function.
-
-  Default value is "*2*".
 {{{
 0 - disable
 1 - behave normally
 2 - lists nominatable maps in a paginated format
 }}}
+  Default value is "*2*".
 
   == gal_nom_mapfile <<sub>[cvarNotations c]</sub>mapFile> ==
   Specifies the file to use which holds the names of the maps, listed one per line, that players can nominate. 
 
-  Default value is *"mapcycle.txt"*.
-
   Use an asterisk to allow all maps in the server's maps folder to be nominatable instead of setting this value to the name of a file.
 
   When set to a filename without a path, it assumes the file is in the gamemod folder (i.e. *"cstrike/mapcycle.txt"*).  You can specify a relative path from your gamemod folder before the filename to use files located elsewhere (i.e. *"/addons/amxmodx/configs/mapcycle.txt"*).
+
+  Default value is *"mapcycle.txt"*.
 
  == gal_listmaps_paginate <<sub>[cvarNotations i]</sub>mapCount> ==
   
@@ -42,9 +40,9 @@
 
   Paginating the map listings will prevent players from getting kicked when they are listing a large number of maps. When paginated, the listings will only display a portion of the total map list at a time.
 
-  Default value is "*10*".
-
   Setting it to "*0*" will not paginate the map listing.
+
+  Default value is "*10*".
 
 ----
 = Related Console Commands =
