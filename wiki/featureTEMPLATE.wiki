@@ -1,0 +1,28 @@
+#summary TEMPLATE TO BE USED FOR "FEATURE SPOTLIGHT" PAGES
+
+----
+= Description =
+
+  _Feature Description_
+
+----
+= Related CVARs =
+
+  == gal_cvar <<sub>[cvarNotations i]</sub>value> ==
+  _description_ 
+
+  _possible value preface_
+
+  _possible values_
+
+  _default value_
+
+  _additional information_
+
+----
+= Related Say Commands =
+
+  == recentmaps ==
+  Displays a listing of the most recently played maps to all players.
+
+  Requires "*gal_banrecent*" to be set to a value higher than "*0*" or else the command will not be available.
