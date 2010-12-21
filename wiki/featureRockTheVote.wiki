@@ -1,0 +1,79 @@
+#summary Feature Spotlight: Rocking the Vote
+
+----
+= Description =
+
+  Rocking the vote is a way players can indicate their desire to start an early vote to change maps. Once enough players have rocked it, a vote will begin.
+
+----
+= Related CVARs =
+
+  == gal_rtv_commands <<sub>[cvarNotations i]</sub>commandsAllowed> ==
+  Indicates which say commands can be used to rock the vote. 
+
+  The default is "*3*".
+
+  The flags are additive. A value of 0 will disable this feature.
+{{{
+1 - standard "rockthevote" command
+2 - shorthand "rtv" command
+4 - dynamic "rockthe<anything>vote" command (allows a player to type any one word (i.e. no spaces) that starts with "rockthe" and ends with "vote". Some examples might be "rockthedamnvote", "rockthesillylittlevote", or "rockthefreakingvote". The total length of the word can not be longer than 31 characters. That leaves 20 characters for creativeness once you factor in the lengths of "rockthe" and "vote".
+}}}
+
+{{{
+
+// Specifies the number of minutes after a map starts that players 
+// have to wait before they can rock the vote. When a single player
+// is on the server, that player can rock the vote at any time, 
+// regardless of this setting.
+gal_rtv_wait 10
+
+// Specifies the ratio of players that need to rock the vote before a
+// vote will be forced to occur. When a single player is on the server,
+// that player can rock the vote and start an immediate vote.
+gal_rtv_ratio 0.60
+
+// Specifies how often, in minutes, to remind everyone how many more
+// rocks are still needed, after the last rock has been made.
+// A value of 0 will disable this feature.
+gal_rtv_reminder 2
+
+// Indicates if the "rock the vote" feature is disabled while players
+// with the specified standard access flags are in game.
+// You can specify multiple flags.
+// An empty value will not disable the feature.
+gal_rtv_disableflags ""
+}}}
+
+
+
+
+
+
+
+
+  == gal_banrecent <<sub>[cvarNotations i]</sub>mapCount> ==
+  Specifies how many of the most recent maps are disallowed from a map vote. 
+
+  Default value is "*3*".
+
+  A value of "*0*" will disable this feature.
+
+  There is a cap defined by the "MAX_RECENT_MAP_CNT" constant in the SMA. It is set to "*16*" by default. It's not recommended but it can be safely changed if needed. The value of this CVAR needs to be equal to or less than the value of "MAX_RECENT_MAP_CNT".
+
+  == gal_banrecentstyle <<sub>[cvarNotations i]</sub>style> ==
+  Indicates the style in which the recent maps are displayed when a player uses the "*recentmaps*" say command.
+
+  Default value is "*1*".
+{{{
+1 - all maps on one line
+2 - each map on a separate line
+}}}
+
+----
+= Related Say Commands =
+
+  == recentmaps ==
+  Displays a listing of the most recently played maps to all players.
+
+  Requires "*gal_banrecent*" to be set to a value higher than "*0*" or else the command will not be available.
