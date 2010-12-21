@@ -25,7 +25,7 @@
 }}}
   Default value is "*2*".
 
-  == gal_nom_mapfile <<sub>[cvarNotations c]</sub>mapFile> ==
+  == gal_nom_mapfile <<sub>[cvarNotations c]</sub>filename> ==
   Specifies the file to use which holds the names of the maps, listed one per line, that players can nominate. 
 
   Use an asterisk to allow all maps in the server's maps folder to be nominatable instead of setting this value to the name of a file.
