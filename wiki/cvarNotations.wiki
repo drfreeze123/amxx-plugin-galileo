@@ -1,0 +1,10 @@
+#summary Definitions of notations found when CVARs are referenced.
+
+When CVARs are listed, they are in one of the following formats:
+
+  <,,f,,cvarValueDescription>
+  [,,f,,cvarValueDescription]
+
+Sometimes, instead of a single CVAR value description there'll be two or more separated by a vertical bar. This means you have a choice of which description to use.
+
+  <,,f,,cvarValueDescription1|,,f,,cvarValueDescription2>
