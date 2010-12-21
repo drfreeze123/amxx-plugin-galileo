@@ -9,20 +9,22 @@
   == amx_extendmap_step <<sub>[cvarNotations f]</sub>minutes> ==
   Specifies the number of minutes a map will be extended each time the "_Extend Map_" option wins the map vote.
 
+  Default value is "*15*".
+
   This is the same CVAR that AMXX provides. It is duplicated in this plugin because Galileo is responsible for handling it.
 
-  Default value is "*15*".
   == amx_extendmap_max <<sub>[cvarNotations f]</sub>minutes> ==
   Specifies the maximum number of minutes a map can be played, if it has been extended. A value less than "*mp_timelimit*" will not let the map be extended.
 
+  Default value is "*90*".
+
   This is the same CVAR that AMXX provides. It is duplicated in this plugin because Galileo is responsible for handling it.
 
-  Default value is "*90*".
   == mp_timelimit <<sub>[cvarNotations f]</sub>minutes> ==
   Specifies the number of minutes a map can be played, without it being extended.
 
   Setting it to "*0*" will let the map be played indefinitely.
 
-  This CVAR is not provided by this plugin. It is only being listed here as a reference since the value of it directly relates to this feature.
-
   Default value is "*20*".
+
+  This CVAR is not provided by this plugin. It is only being listed here as a reference since the value of it directly relates to this feature.
