@@ -11,23 +11,27 @@
   == gal_rtv_commands <<sub>[cvarNotations i]</sub>commandsAllowed> ==
   Indicates which say commands can be used to rock the vote. 
 
-  The default is "*3*".
-
-  The flags are additive. A value of 0 will disable this feature.
+  The flags are additive. A value of "*0*" will disable this feature.
 {{{
 1 - standard "rockthevote" command
 2 - shorthand "rtv" command
-4 - dynamic "rockthe<anything>vote" command (allows a player to type any one word (i.e. no spaces) that starts with "rockthe" and ends with "vote". Some examples might be "rockthedamnvote", "rockthesillylittlevote", or "rockthefreakingvote". The total length of the word can not be longer than 31 characters. That leaves 20 characters for creativeness once you factor in the lengths of "rockthe" and "vote".
+4 - dynamic "rockthe<anything>vote" command (allows a player to type any one word (i.e. no 
+    spaces) that starts with "rockthe" and ends with "vote". Some examples might be 
+    "rockthedamnvote", "rockthesillylittlevote", or "rockthefreakingvote". The total 
+    length of the word can not be longer than 31 characters. That leaves 20 characters for 
+    creativeness once you factor in the lengths of "rockthe" and "vote".
 }}}
+  The default is "*3*".
+
+  == gal_rtv_wait <<sub>[cvarNotations i]</sub>minutes> ==
+  Specifies the number of minutes after a map starts that players have to wait before they can rock the vote. 
+
+  When a single player is on the server, that player can rock the vote at any time, regardless of this setting.
+
+  The default is "*10*".
+
 
 {{{
-
-// Specifies the number of minutes after a map starts that players 
-// have to wait before they can rock the vote. When a single player
-// is on the server, that player can rock the vote at any time, 
-// regardless of this setting.
-gal_rtv_wait 10
-
 // Specifies the ratio of players that need to rock the vote before a
 // vote will be forced to occur. When a single player is on the server,
 // that player can rock the vote and start an immediate vote.
