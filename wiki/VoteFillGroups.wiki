@@ -1,4 +1,4 @@
-#summary An explanation of the "vote fill groups" feature and how to use it.
+#summary Explanation of the "vote fill groups" feature and how to use it.
 
 = Introduction =
 
