@@ -8,20 +8,19 @@
 ----
 = Related CVARs =
 
-  == gal_rtv_commands <<sub>[cvarNotations i]</sub>commandsAllowed> ==
+  == gal_rtv_commands <<sub>[cvarNotations i]</sub>flags> ==
   Indicates which say commands can be used to rock the vote. 
 
   The flags are additive. A value of "*0*" will disable this feature.
 {{{
 1 - standard "rockthevote" command
 2 - shorthand "rtv" command
-4 - dynamic "rockthe<anything>vote" command (allows a player to type any one word (i.e. no 
-    spaces) that starts with "rockthe" and ends with "vote". Some examples might be 
-    "rockthedamnvote", "rockthesillylittlevote", or "rockthefreakingvote". The total 
-    length of the word can not be longer than 31 characters. That leaves 20 characters for 
-    creativeness once you factor in the lengths of "rockthe" and "vote".
+4 - dynamic "rockthe<anything>vote" command (allows a player to type any one
+    word that starts with "rockthe" and ends with "vote". Some examples might 
+    be "rockthedamnvote", "rockthesillylittlevote", or "rockthefreakingvote".
+    The total length of the word can not be longer than 20 characters. 
 }}}
-  The default is "*3*".
+  The default is "*3*" _(1 + 2 = 3)_.
 
   == gal_rtv_wait <<sub>[cvarNotations i]</sub>minutes> ==
   Specifies the number of minutes after a map starts that players have to wait before they can rock the vote. 
@@ -30,54 +29,45 @@
 
   The default is "*10*".
 
+  == gal_rtv_ratio <<sub>[cvarNotations f]</sub>ratio> ==
+  Specifies the ratio of players that need to rock the vote before a vote will be forced to occur. When a single player is on the server, that player can rock the vote and start an immediate vote.
 
-{{{
-// Specifies the ratio of players that need to rock the vote before a
-// vote will be forced to occur. When a single player is on the server,
-// that player can rock the vote and start an immediate vote.
-gal_rtv_ratio 0.60
+  The default is "*0.60*".
 
-// Specifies how often, in minutes, to remind everyone how many more
-// rocks are still needed, after the last rock has been made.
-// A value of 0 will disable this feature.
-gal_rtv_reminder 2
+  == gal_rtv_reminder <<sub>[cvarNotations i]</sub>minutes> ==
+  Specifies how often, in minutes, to remind everyone how many more rocks are still needed, after the last rock has been made.
 
-// Indicates if the "rock the vote" feature is disabled while players
-// with the specified standard access flags are in game.
-// You can specify multiple flags.
-// An empty value will not disable the feature.
-gal_rtv_disableflags ""
-}}}
+  A value of "*0*" indicates no periodic reminders will be given.
 
+  The default is "*2*".
 
+  Regardless of the value of this setting, the player will always get immediate feedback, when rocking the vote, letting them know how many more rocks are needed.
 
+  == gal_rtv_disableflags <<sub>[cvarNotations c]</sub>[http://wiki.alliedmods.net/Adding_Admins_(AMX_Mod_X)#Access_Levels accessFlags]> ==
+  Indicates if the "rock the vote" feature is disabled while players with the specified  [http://wiki.alliedmods.net/Adding_Admins_(AMX_Mod_X)#Access_Levels access flags] are in game.
 
+  You can specify multiple flags. 
 
+  An empty value means the ability to rock the vote is not dependent on whether admins are present.
 
-
-
-  == gal_banrecent <<sub>[cvarNotations i]</sub>mapCount> ==
-  Specifies how many of the most recent maps are disallowed from a map vote. 
-
-  Default value is "*3*".
-
-  A value of "*0*" will disable this feature.
-
-  There is a cap defined by the "MAX_RECENT_MAP_CNT" constant in the SMA. It is set to "*16*" by default. It's not recommended but it can be safely changed if needed. The value of this CVAR needs to be equal to or less than the value of "MAX_RECENT_MAP_CNT".
-
-  == gal_banrecentstyle <<sub>[cvarNotations i]</sub>style> ==
-  Indicates the style in which the recent maps are displayed when a player uses the "*recentmaps*" say command.
-
-  Default value is "*1*".
-{{{
-1 - all maps on one line
-2 - each map on a separate line
-}}}
+  The default is *""*.
 
 ----
 = Related Say Commands =
 
-  == recentmaps ==
-  Displays a listing of the most recently played maps to all players.
+  == rockthevote ==
+  Registers the player's desire for an early map vote.
 
-  Requires "*gal_banrecent*" to be set to a value higher than "*0*" or else the command will not be available.
+  Requires "*gal_rtv_commands*" to be comprised of the "*1*" flag or the command will not be available.
+
+  == rtv ==
+  Alias for "*rockthevote*". This is a shorthand version of it.
+
+  Requires "*gal_rtv_commands*" to be comprised of the "*2*" flag or the command will not be available.
+
+  == rockthe_`<`anything`>`_vote ==
+  Alias for "*rockthevote*". This is a dynamic version of it.
+
+  Players can type any word between "rockthe" and "vote", up to a limit of 20 characters.
+
+  Requires "*gal_rtv_commands*" to be comprised of the "*4*" flag or the command will not be available.
