@@ -9,9 +9,7 @@
 
 = Introduction =
 
-This feature allows you to prioritize different groups of maps to use in filling a vote. It allows you to say, "pick up to X maps from this group first, then pick up to Y maps from this other group". You can have a maximum of 8 groups.
-
-= Details =
+This feature allows you = Details =
 
 Here is an example of 3 counts listed:
 {{{
