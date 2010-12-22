@@ -3,25 +3,21 @@
 ----
 = Explanation =
 
-The "prefixes.ini" file holds short text that you'd normally find at the start of map name. For example, the text in question would be what is highlighted below.
+The *prefixes.ini* file holds short text that you'd normally find at the start of map name (the map prefix). The table below shows several maps and their prefixes. Note the underscore is included in the prefix.
 
-  * *cs`_`*assault (cs`_`)
-  * *de`_`*dust (de`_`)
-  * *fy`_`*ice (fy`_`)
-  * *awp`_`*mountaintop (awp`_`)
-
-
+|| *Map* || *Prefix* ||
+|| cs_assault || cs`_` ||
+|| de_dust2 || de`_` ||
+|| fy_ice || fy`_` ||
+|| awp_india || awp`_` ||
 
 ----
 = Example =
 
-_*prefixes.ini*_
+_*prefixes.ini*_ ([http://amxx-plugin-galileo.googlecode.com/files/prefixes.ini download])
 {{{
 cs_
 de_
-as_
 fy_
-kz_
-ka_
-xmas_
+awp_
 }}}
