@@ -1,0 +1,25 @@
+#summary Feature Spotlight: Weighted Votes
+
+----
+= Description =
+
+  Weighted votes allows players with specific [http://wiki.alliedmods.net/Adding_Admins_(AMX_Mod_X)#Access_Levels access flags] to have their vote counted as more than a regular player's vote.
+
+----
+= Related CVARs =
+
+  == gal_vote_weight _<<sub>[cvarNotations i]</sub>voteCount>_ ==
+
+  Specifies how many votes a single admin vote should count as. 
+
+  A value of "*0*" or "*1*" will disable this feature.
+
+  Default value is "*2*".
+
+  == gal_vote_weightflags _<<sub>[cvarNotations c]</sub>[http://wiki.alliedmods.net/Adding_Admins_(AMX_Mod_X)#Access_Levels accessFlags]>_ ==
+
+  Specifies the [http://wiki.alliedmods.net/Adding_Admins_(AMX_Mod_X)#Access_Levels access flags] needed to have weighted votes. 
+
+  You can specify multiple flags.
+
+  Default value is *"y"*.
