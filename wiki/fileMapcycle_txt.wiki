@@ -1,0 +1,34 @@
+#summary Explanation and example of the "mapcycle.txt" file.
+
+----
+= Explanation =
+
+The "mapcycle.txt" file contains a listing of map names. The names should not include the ".bsp" extension.
+
+When you come across the phrase "in the style of 'mapcycle.txt'", it means a file that has maps listed, one per line, like they are in the default "mapcycle.txt" file.
+
+----
+= Example =
+
+_*mapcycle.txt*_
+{{{
+de_airstrip
+cs_havana
+de_chateau
+de_aztec
+as_oilrig
+cs_siege
+de_cbble
+de_dust
+cs_747
+de_prodigy
+cs_assault
+cs_office
+cs_italy
+cs_backalley
+cs_militia
+de_train
+rats_final
+aim_map
+awp_map
+}}}
