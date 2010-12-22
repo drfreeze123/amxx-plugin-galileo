@@ -1,0 +1,68 @@
+#summary Feature Spotlight: Nominating Maps for the Vote
+
+----
+= Description =
+
+  Nominations can be used to let players nominate maps they would like included in the next map vote. Depending on how many maps have been nominated, it is possible that not all nominations will make it into the next vote.
+
+----
+= Related CVARs =
+
+  == gal_nom_playerallowance _<<sub>[cvarNotations i]</sub>nominationCount>_ ==
+  Specifies how many nominations each player can make. 
+
+  A value of "*0*" will disable this feature.
+
+  Default value is "*2*".
+
+  There is a cap defined by the "MAX_NOMINATION_CNT" constant in the SMA. It is set to "*5*" by default. It's not recommended but it can be safely changed if needed. The value of this CVAR needs to be less than or equal to the value of "MAX_NOMINATION_CNT".
+
+  == gal_nom_mapfile _<<sub>[cvarNotations c]</sub>filename>_ ==
+  Specifies the file to use which holds the names of the maps, listed one per line, that players can nominate. 
+
+  Use an asterisk to allow all maps in the server's maps folder to be nominatable instead of setting this value to the name of a file.
+
+  When set to a filename without a path, it assumes the file is in the gamemod folder (i.e. *"cstrike/mapcycle.txt"*).  You can specify a relative path from your gamemod folder before the filename to use files located elsewhere (i.e. *"/addons/amxmodx/configs/mapcycle.txt"*).
+
+  Default value is *"mapcycle.txt"*.
+
+  == gal_nom_prefixes _<<sub>[cvarNotations i]</sub>setting>_ ==
+  Indicates if the *./amxmodx/configs/galileo/[prefixes.ini]* file should be used to attempt to match map names if the player's entered text doesn't match any.
+{{{
+0 - do not use prefixes to help match map names
+1 - use prefixes to help match names
+}}}
+  Default value is "*0*".
+
+  Setting this to "*1*" can result in lag when players chat (_say_ and _say_team_) a lot.
+
+  == gal_nom_qtyused _<<sub>[cvarNotations i]</sub>nominationCount>_ ==
+  Specifies how many of the nominations made will be considered for use in the next map vote. 
+
+  A value of "*0*" means all the nominated maps will be considered.
+
+  Default value is "*0*".
+
+----
+= Related Say Commands =
+
+  == nominate _<<sub>[cvarNotations c]</sub>partialMapName>_ | nom _<<sub>[cvarNotations c]</sub>partialMapName>_ ==
+  Attempts to nominate the map specified by _partialMapName_.
+
+  If there are multiple matches for _partialMapName_, a menu of the matches will be displayed to the player allowing them to select map they meant.
+
+  Requires "*gal_nom_playerallowance*" to be set to a value higher than "*0*" or the command will not be available.
+
+  == cancel _<<sub>[cvarNotations c]</sub>mapName>_ ==
+  Cancels the nomination of _mapName_, which would have had to be previously nominated by the player.
+
+  Requires "*gal_nom_playerallowance*" to be set to a value higher than "*0*" or the command will not be available.
+
+  == _<<sub>[cvarNotations c]</sub>mapName>_ ==
+
+  If _mapName_ has been nominated by the player, will cancel the nomination. If _mapname_ has not been nominated by anyone, will attempt to nominate it.
+
+  Requires "*gal_nom_playerallowance*" to be set to a value higher than "*0*" or the command will not be available.
+
+  == nominations | noms ==
+  Displays a listing of maps that have been nominated to all players.
