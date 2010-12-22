@@ -3,7 +3,7 @@
 <table valign="top" align="right"><tr><td>
 ----
 =Related Features=
-  * [nextmapVoting Next Map Voting]
+  * [featureNextmapVoting Next Map Voting]
 ----
 </td></tr></table>
 
