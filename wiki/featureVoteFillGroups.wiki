@@ -23,7 +23,7 @@ The files must be named and located as such:
 ./amxmodx/configs/galileo/2.ini
 ./amxmodx/configs/galileo/3.ini
 }}}
-Each of those files, *1.ini*, *2.ini*, and *3.ini*, should contain a listing of maps in the style of *mapcycle.txt*.
+Each of those files, *1.ini*, *2.ini*, and *3.ini*, should contain a listing of maps [fileMapcycle_txt#In_the_Style_of... in the style of] *mapcycle.txt*.
 
 Galileo will first load any nominated maps into the vote. It will then grab up to 3 maps from *1.ini*, up to 3 from *2.ini*, and up to 2 from *3.ini*.
 
