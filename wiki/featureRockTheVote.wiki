@@ -8,7 +8,7 @@
 ----
 = Related CVARs =
 
-  == gal_rtv_commands <<sub>[cvarNotations i]</sub>flags> ==
+  == gal_rtv_commands _<<sub>[cvarNotations i]</sub>flags>_ ==
   Indicates which say commands can be used to rock the vote. 
 
   The flags are additive. A value of "*0*" will disable this feature.
@@ -22,19 +22,19 @@
 }}}
   The default is "*3*" _(1 + 2 = 3)_.
 
-  == gal_rtv_wait <<sub>[cvarNotations i]</sub>minutes> ==
+  == gal_rtv_wait _<<sub>[cvarNotations i]</sub>minutes>_ ==
   Specifies the number of minutes after a map starts that players have to wait before they can rock the vote. 
 
   When a single player is on the server, that player can rock the vote at any time, regardless of this setting.
 
   The default is "*10*".
 
-  == gal_rtv_ratio <<sub>[cvarNotations f]</sub>ratio> ==
+  == gal_rtv_ratio _<<sub>[cvarNotations f]</sub>ratio>_ ==
   Specifies the ratio of players that need to rock the vote before a vote will be forced to occur. When a single player is on the server, that player can rock the vote and start an immediate vote.
 
   The default is "*0.60*".
 
-  == gal_rtv_reminder <<sub>[cvarNotations i]</sub>minutes> ==
+  == gal_rtv_reminder _<<sub>[cvarNotations i]</sub>minutes>_ ==
   Specifies how often, in minutes, to remind everyone how many more rocks are still needed, after the last rock has been made.
 
   A value of "*0*" indicates no periodic reminders will be given.
@@ -43,7 +43,7 @@
 
   Regardless of the value of this setting, the player will always get immediate feedback, when rocking the vote, letting them know how many more rocks are needed.
 
-  == gal_rtv_disableflags <<sub>[cvarNotations c]</sub>[http://wiki.alliedmods.net/Adding_Admins_(AMX_Mod_X)#Access_Levels accessFlags]> ==
+  == gal_rtv_disableflags _<<sub>[cvarNotations c]</sub>[http://wiki.alliedmods.net/Adding_Admins_(AMX_Mod_X)#Access_Levels accessFlags]>_ ==
   Indicates if the "rock the vote" feature is disabled while players with the specified  [http://wiki.alliedmods.net/Adding_Admins_(AMX_Mod_X)#Access_Levels access flags] are in game.
 
   You can specify multiple flags. 
@@ -55,19 +55,9 @@
 ----
 = Related Say Commands =
 
-  == rockthevote ==
-  Registers the player's desire for an early map vote.
+  == rockthevote | rtv | rockthe_`<`anything`>`_vote ==
+  Registers the player's desire for an early map vote. The player will be informed how many more players need to rock the vote before a vote will be forced.
 
-  Requires "*gal_rtv_commands*" to be comprised of the "*1*" flag or the command will not be available.
+  The _anything_ argument can be any word up to 20 characters in length.
 
-  == rtv ==
-  Alias for "*rockthevote*". This is a shorthand version of it.
-
-  Requires "*gal_rtv_commands*" to be comprised of the "*2*" flag or the command will not be available.
-
-  == rockthe_`<`anything`>`_vote ==
-  Alias for "*rockthevote*". This is a dynamic version of it.
-
-  Players can type any word between "rockthe" and "vote", up to a limit of 20 characters.
-
-  Requires "*gal_rtv_commands*" to be comprised of the "*4*" flag or the command will not be available.
+  Requires an appropriate value set for "*gal_rtv_commands*".
