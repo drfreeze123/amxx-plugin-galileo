@@ -27,7 +27,7 @@
   Default value is *"mapcycle.txt"*.
 
   == gal_nom_prefixes _<<sub>[cvarNotations i]</sub>setting>_ ==
-  Indicates if the *./amxmodx/configs/galileo/[prefixes.ini]* file should be used to attempt to match map names if the player's entered text doesn't match any.
+  Indicates if the *./amxmodx/configs/galileo/[filePrefixes_ini prefixes.ini]* file should be used to attempt to match map names if the player's entered text doesn't match any.
 {{{
 0 - do not use prefixes to help match map names
 1 - use prefixes to help match names
