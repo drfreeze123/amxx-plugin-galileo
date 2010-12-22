@@ -1,5 +1,12 @@
 #summary Feature Spotlight: Vote Fill Groups
 
+<table align="right"><tr><td>
+----
+=Related Features=
+  * [nextmapVoting Next Map Voting]
+----
+</td></tr></table>
+
 = Introduction =
 
 This feature allows you to prioritize different groups of maps to use in filling a vote. It allows you to say, "pick up to X maps from this group first, then pick up to Y maps from this other group". You can have a maximum of 8 groups.
@@ -27,4 +34,9 @@ Each of those files, *1.ini*, *2.ini*, and *3.ini*, should contain a listing of 
 
 Galileo will first load any nominated maps into the vote. It will then grab up to 3 maps from *1.ini*, up to 3 from *2.ini*, and up to 2 from *3.ini*.
 
-= Usage =
+= Map Load Order =
+
+Maps will be loaded according to the order below until the maximum number of maps has been loaded as specified by *gal_vote_mapchoices*.
+  # nominated maps
+  # maps from vote fill groups
+  # maps specified by *gal_vote_mapfile*
