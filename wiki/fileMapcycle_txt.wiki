@@ -1,16 +1,19 @@
-#summary Explanation and example of the "mapcycle.txt" file.
+#summary Explanation and example of the *mapcycle.txt* file.
 
 ----
 = Explanation =
 
-The "mapcycle.txt" file contains a listing of map names. The names should not include the ".bsp" extension.
+The *mapcycle.txt* file contains a listing of map names. The maps should be listed one per line and should not include the ".bsp" extension.
+<br />
+----
+= In the Style of... =
 
-When you come across the phrase "in the style of 'mapcycle.txt'", it means a file that has maps listed, one per line, like they are in the default "mapcycle.txt" file.
-
+In [http://code.google.com/p/amxx-plugin-galileo/w/list?can=2&q=in+the+style+of+mapcycle.txt certain parts] of this wiki you'll come across the phrase "in the style of *mapcycle.txt*". It means a file that has maps listed as they are in the default *mapcycle.txt* file (shown in the example below).
+<br />
 ----
 = Example =
 
-_*mapcycle.txt*_
+_*mapcycle.txt*_ ([http://amxx-plugin-galileo.googlecode.com/files/mapcycle.txt download])
 {{{
 de_airstrip
 cs_havana
@@ -28,7 +31,4 @@ cs_italy
 cs_backalley
 cs_militia
 de_train
-rats_final
-aim_map
-awp_map
 }}}
