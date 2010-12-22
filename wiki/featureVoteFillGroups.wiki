@@ -1,6 +1,6 @@
 #summary Feature Spotlight: Vote Fill Groups
 
-<table align="right"><tr><td>
+<table valign="top" align="right"><tr><td>
 ----
 =Related Features=
   * [nextmapVoting Next Map Voting]
@@ -9,7 +9,9 @@
 
 = Introduction =
 
-This feature allows you = Details =
+This feature allows you to prioritize different groups of maps to use in filling a vote. It allows you to say, "pick up to X maps from this group first, then pick up to Y maps from this other group". You can have a maximum of 8 groups.
+
+= Details =
 
 Here is an example of 3 counts listed:
 {{{
