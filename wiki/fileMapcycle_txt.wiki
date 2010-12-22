@@ -1,5 +1,6 @@
 #summary Explanation and example of the "mapcycle.txt" file.
-<br />
+
+
 ----
 = Explanation =
 
