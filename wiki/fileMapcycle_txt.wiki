@@ -1,4 +1,4 @@
-#summary Explanation and example of the *mapcycle.txt* file.
+#summary Explanation and example of the "mapcycle.txt" file.
 
 ----
 = Explanation =
