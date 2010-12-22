@@ -1,0 +1,27 @@
+#summary Explanation and example of the "prefixes.ini" file.
+
+----
+= Explanation =
+
+The "prefixes.ini" file holds short text that you'd normally find at the start of map name. For example, the text in question would be what is highlighted below.
+
+  * *cs`_`*assault (cs`_`)
+  * *de`_`*dust (de`_`)
+  * *fy`_`*ice (fy`_`)
+  * *awp`_`*mountaintop (awp`_`)
+
+
+
+----
+= Example =
+
+_*prefixes.ini*_
+{{{
+cs_
+de_
+as_
+fy_
+kz_
+ka_
+xmas_
+}}}
