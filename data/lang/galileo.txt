@@ -234,8 +234,7 @@ GAL_NOM_FAIL_TOORECENT = Nominierung fehlgeschlagen; ^"%s^" wurde erst gespielt.
 GAL_NOM_FAIL_TOORECENT_HLP = Schreibe ^"recentmaps^" um die letzten gespielten Maps zu sehn.
 GAL_NOM_FAIL_VOTEOVER = Nominierung fehlgeschlagen; die Maps im Voting wurden schon bestimmt.
 GAL_NOM_GOOD_HLP = Schreibe ^"<mapname>^" oder ^"cancel <mapname>^" wenn du eine deiner Nominierungen abbrechen willst.
-GAL_NOM_MATCHES = Es wurde mehr als eine Map fuer ^"%s^" gefunden. 
-Bitte such dir die gewuenschte aus.
+GAL_NOM_MATCHES = Es wurde mehr als eine Map fuer ^"%s^" gefunden. Bitte such dir die gewuenschte aus.
 GAL_NOM_MATCHES_MAX = Es gibt mehr als %i Uebereinstimmungen. Es werden nur die ersten %i Maps uebernommen.
 GAL_NOM_SUCCESS = %s nominiert ^"%s^".
 GAL_OPTION_EXTEND =  ^"%s^" um %i Minuten verlaengern
