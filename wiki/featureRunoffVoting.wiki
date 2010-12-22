@@ -1,0 +1,24 @@
+#summary Feature Spotlight: Runoff Voting
+
+----
+= Description =
+
+  Runoff voting happens when none of the normal vote options receive over 50% of a given vote. The two options with the highest vote counts will be in the runoff vote.                                 
+
+----
+= Related CVARs =
+
+  == gal_runoff_enabled _<<sub>[cvarNotations i]</sub>setting>_ ==
+
+  Indicates whether to allow runoff voting.
+{{{
+0 - disable runoff voting
+1 - enable runoff voting
+}}}
+  Default value is "*1*".
+
+  == gal_runoff_duration _<<sub>[cvarNotations i]</sub>seconds>_ ==
+
+  Specifies the number of seconds the runoff vote should last.
+
+  Default value is "*15*".
