@@ -657,7 +657,7 @@ public cmd_startVote(id, level, cid)
 	return PLUGIN_HANDLED;
 }
 
-map_populateList(Array:mapArray, mapFilename[])
+map_populateList(&Array:mapArray, mapFilename[])
 {
 	// clear the map array in case we're reusing it
 	ArrayClear(mapArray);
