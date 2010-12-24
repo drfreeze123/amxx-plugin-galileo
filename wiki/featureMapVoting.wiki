@@ -37,11 +37,13 @@
   <code language="txt">1 - maps file: one map per line, without the ".bsp" extensions
  2 - groups file: quantity of maps for each group, on separate lines (groups will be filled in order listed)
  3 - groups file: quantity of maps for each group, on separate lines (groups will be filled in random order, not as listed)</code>
+<pre>
 {{{
-  <pre>1 - maps file: one map per line, without the ".bsp" extensions
+1 - maps file: one map per line, without the ".bsp" extensions
 2 - groups file: quantity of maps for each group, on separate lines (groups will be filled in order listed)
-3 - groups file: quantity of maps for each group, on separate lines (groups will be filled in random order, not as listed)</pre>
+3 - groups file: quantity of maps for each group, on separate lines (groups will be filled in random order, not as listed)
 }}}
+</pre>
   Default value is "*1*".
 
   == gal_vote_uniqueprefixes _<<sub>[cvarNotations i]</sub>setting>_ ==
