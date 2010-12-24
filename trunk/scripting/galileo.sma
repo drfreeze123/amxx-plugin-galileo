@@ -433,10 +433,12 @@ public srv_handleStart()
 			new file = fopen(filename, "rt"); 
 			if (file) // !feof(file)
 			{ 
+				// load the map that was being played 
 				fgets(file, nextMap, sizeof(nextMap)-1);
 
 				if (startAction == SRV_START_NEXTMAP)
 				{
+					// load the map that was supposed to be played next
 					nextMap[0] = 0;
 					fgets(file, nextMap, sizeof(nextMap)-1);
 				}
