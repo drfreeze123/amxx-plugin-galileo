@@ -64,8 +64,7 @@
 = Related Console Commands =
 
   == gal_startvote `[`-nochange`]` ==
-  Forces a map vote to begin and the map will be changed once the next map has been determined. If the "-nochange" argument is supplied, the map will not be changed by Galileo, which is useful when you have a different plugin handling the actual changing 
-of the map.
+  Forces a map vote to begin and the map will be changed once the next map has been determined. If the "-nochange" argument is supplied, the map will not be changed by Galileo, which is useful when you have a different plugin handling the actual changing of the map.
 
   == gal_createmapfile _<<sub>c</sub>filename>_ ==
   Creates a file that contains a list of every valid map in your maps folder.  The filename argument indicates specifies the name to be used for the new file.  It will be created in the *.\configs\galileo* folder.
