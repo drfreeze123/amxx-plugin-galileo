@@ -1,0 +1,93 @@
+#summary Feature Spotlight: Voting for the Next Map
+
+----
+= Description =
+
+  This is what most people generally think of when they think of starting a vote for a new map. It's just a standard map vote.
+
+----
+= Related CVARs =
+
+  == gal_vote_mapchoices _<<sub>[cvarNotations i]</sub>mapCount>_ ==
+  Specifies the number of maps players can choose from during the vote.
+  
+  The number of maps must be between 2 and 8.
+
+  Default value is "*5*".
+
+  == gal_vote_duration _<<sub>[cvarNotations i]</sub>seconds>_ ==
+  Specifies the number of seconds the vote should last.
+
+  Default value is "*15*".
+
+  == gal_vote_mapfile _<<sub>[cvarNotations c]</sub>filename>_ ==
+  Specifies the file to use which either holds the names of the maps, one per line, that the vote will be filled with or is used with the [featureVoteFillGroups map group feature] to specify how many maps to use from each group.
+
+  When set to a filename without a path, it assumes the file is in the game mod folder (i.e. *"cstrike/mapcycle.txt"*).  You can specify a relative path from your game mod folder before the filename to use files located elsewhere (i.e. *"/addons/amxmodx/configs/mapcycle.txt"*).
+
+  Default value is *"mapcycle.txt"*.
+
+  == gal_vote_mapfilestyle _<<sub>[cvarNotations i]</sub>style>_ ==
+  Indicates how the file specified by "gal_vote_mapfile" is setup.
+{{{
+1 - maps file: one map per line, without the ".bsp" extensions
+2 - groups file: quantity of maps for each group, on separate lines (groups will be filled in order listed)
+3 - groups file: quantity of maps for each group, on separate lines (groups will be filled in random order, not as listed)
+}}}
+  <code language="txt">1 - maps file: one map per line, without the ".bsp" extensions
+ 2 - groups file: quantity of maps for each group, on separate lines (groups will be filled in order listed)
+ 3 - groups file: quantity of maps for each group, on separate lines (groups will be filled in random order, not as listed)</code>
+  <pre> 1 - maps file: one map per line, without the ".bsp" extensions
+2 - groups file: quantity of maps for each group, on separate lines (groups will be filled in order listed)
+3 - groups file: quantity of maps for each group, on separate lines (groups will be filled in random order, not as listed)</pre>
+  Default value is "*1*".
+
+  == gal_vote_uniqueprefixes _<<sub>[cvarNotations i]</sub>setting>_ ==
+  Indicates whether the maps being added, after nominations have been added to a vote, should have unique map prefixes from those already in the vote.
+
+  Default value is "*0*".
+
+  Nominations are exempt from the check for unique prefixes. Nominations are added and then Galileo will start checking the rest of the maps against the maps already added.
+
+  == gal_vote_announcechoice _<<sub>[cvarNotations i]</sub>setting>_ ==
+  Indicates whether to announce each player's choice.
+{{{
+0 - keep the player's choice private
+1 - announce the player's choice
+}}}
+  Default value is "*1*".
+
+  When the player's choice is announced, everyone on the server is shown what every other player's selection was.
+
+  == gal_vote_expirationcountdown _<<sub>[cvarNotations i]</sub>setting>_ ==
+  Indicates whether a vote expiration countdown should be displayed.
+{{{
+0 - do not show the countdown
+1 - show the countdown
+}}}
+  Default value is "*1*".
+
+  The vote expiration countdown will display a timer to players that haven't voted, when there are 10 seconds left in the current vote. The timer counts down from 10 to 0, at which point the vote will be over.
+
+
+----
+= Related Console Commands =
+
+  == gal_startvote _`[`-nochange`]`_ ==
+  Forces a map vote to begin and the map will be changed once the next map has been determined. If the "-nochange" argument is supplied, the map will not be changed by Galileo, which is useful when you have a different plugin handling the actual changing 
+of the map.
+
+gal_createmapfile filename
+
+Creates a file that contains a list of every valid map in your maps
+folder.  The filename argument indicates specifies the name to be 
+used for the new file.  It will be created in the .\configs\galileo folder.
+
+  == listmaps ==
+  This default HL1 command lists the maps available on the server that the client can vote for - the server admin specifies which maps get listed by editing the mapcycle.txt file. 
+
+  When "*gal_cmd_listmaps*" is set to "*0*" the client will be presented with a message indicating the command is disabled.
+
+  When "*gal_cmd_listmaps*" is set to "*1*" the command will function according to it's normal standard behavior.
+
+  When "*gal_cmd_listmaps*" is set to "*2*" the list of maps will be taken from the file indicated by "*gal_nom_mapfile*" and will be displayed paginated according to the value of "*gal_listmaps_paginate*".
