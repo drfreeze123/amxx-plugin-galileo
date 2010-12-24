@@ -13,47 +13,47 @@ new const PLUGIN_VERSION[]  = "1.2 $Revision: 413 $"; // $Date: 2009-07-21 12:02
 #define RTV_CMD_DYNAMIC		4
 
 #define SOUND_GETREADYTOCHOOSE	1
-#define SOUND_COUNTDOWN					2
-#define SOUND_TIMETOCHOOSE			4
-#define SOUND_RUNOFFREQUIRED		8
+#define SOUND_COUNTDOWN			2
+#define SOUND_TIMETOCHOOSE		4
+#define SOUND_RUNOFFREQUIRED	8
 
-#define MAPFILESTYLE_MAPS						1
+#define MAPFILESTYLE_MAPS			1
 #define MAPFILESTYLE_GROUPS_ORDERED	2
 #define MAPFILESTYLE_GROUPS_RANDOM	3
 
 #define SHOWSTATUS_VOTE		1
 #define SHOWSTATUS_END		2
 
-#define SHOWSTATUSTYPE_COUNT			1
+#define SHOWSTATUSTYPE_COUNT		1
 #define SHOWSTATUSTYPE_PERCENTAGE	2
 
 #define ANNOUNCECHOICE_PLAYERS	1
-#define ANNOUNCECHOICE_ADMINS		2
+#define ANNOUNCECHOICE_ADMINS	2
 
-#define MAX_NOMINATION_CNT			5
+#define MAX_NOMINATION_CNT	5
 
-#define MAX_PREFIX_CNT			32
+#define MAX_PREFIX_CNT		32
 #define MAX_RECENT_MAP_CNT	16
 
-#define MAX_PLAYER_CNT				32
-#define MAX_MAPNAME_LEN				31
-#define MAX_MAPS_IN_VOTE			8
-#define MAX_NOM_MATCH_CNT     1000
+#define MAX_PLAYER_CNT		32
+#define MAX_MAPNAME_LEN		31
+#define MAX_MAPS_IN_VOTE	8
+#define MAX_NOM_MATCH_CNT	1000
 
 #define VOTE_IN_PROGRESS	1
-#define VOTE_FORCED				2
+#define VOTE_FORCED			2
 #define VOTE_IS_RUNOFF		4
-#define VOTE_IS_OVER      8
-#define VOTE_IS_EARLY			16
+#define VOTE_IS_OVER 		8
+#define VOTE_IS_EARLY		16
 #define VOTE_HAS_EXPIRED	32
 
 #define SRV_START_CURRENTMAP	1
-#define SRV_START_NEXTMAP			2
-#define SRV_START_MAPVOTE			3
+#define SRV_START_NEXTMAP		2
+#define SRV_START_MAPVOTE		3
 #define SRV_START_RANDOMMAP		4
 
 #define LISTMAPS_USERID	0
-#define LISTMAPS_LAST		1
+#define LISTMAPS_LAST	1
 
 #define TIMELIMIT_NOT_SET -1.0
 
@@ -62,10 +62,10 @@ new MENU_CHOOSEMAP[] = "gal_menuChooseMap";
 new DIR_CONFIGS[64];
 new DIR_DATA[64];
 
-new CLR_RED[3];			// \r
+new CLR_RED[3];		// \r
 new CLR_WHITE[3];   // \w
 new CLR_YELLOW[3];  // \y
-new CLR_GREY[3];		// \d
+new CLR_GREY[3];	// \d
 
 new bool:g_wasLastRound = false;
 new g_mapPrefix[MAX_PREFIX_CNT][16], g_mapPrefixCnt = 1;
