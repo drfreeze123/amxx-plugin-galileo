@@ -1,4 +1,4 @@
-// $Revision: 413 $ $Date: 2009-07-21 12:02:26 -0400 (Tue, 21 Jul 2009) $
+// $Revision$ $Date$
 
 [en]
 GAL_CANCEL_FAIL_INPROGRESS = Cancellation failed; vote is already in progress.

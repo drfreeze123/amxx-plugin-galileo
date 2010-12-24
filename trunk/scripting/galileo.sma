@@ -1,4 +1,4 @@
-new const PLUGIN_VERSION[]  = "1.2 $Revision: 413 $"; // $Date: 2009-07-21 12:02:26 -0400 (Tue, 21 Jul 2009) $
+new const PLUGIN_VERSION[]  = "1.2 $Revision$"; // $Date$
 
 #include <amxmodx>
 #include <amxmisc>
