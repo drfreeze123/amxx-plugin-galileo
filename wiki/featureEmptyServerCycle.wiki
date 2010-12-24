@@ -1,4 +1,7 @@
-#summary You may have a lot of maps but only a few are sure to attract a lot of players. When the server is empty, you may want the server to change to those maps.
+#summary Feature: Empty Server Map Cycle
+
+= Description = 
+  You may have a lot of maps but only a few are sure to attract a lot of players. When the server is empty, you may want the server to change to those maps.
 
 = Related CVARs =
 
