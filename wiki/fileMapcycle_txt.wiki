@@ -9,7 +9,7 @@ The *mapcycle.txt* file contains a listing of map names. The maps should be list
 ----
 = In the Style of... =
 
-In [http://code.google.com/p/amxx-plugin-galileo/w/list?can=2&q=in+the+style+of+mapcycle.txt certain parts] of this wiki you'll come across the phrase "in the style of *mapcycle.txt*". It means a file that has maps listed as they are in the default *mapcycle.txt* file (shown in the example below).
+In [http://code.google.com/p/amxx-plugin-galileo/w/list?can=2&q=in+the+style+of+mapcycle.txt certain parts] of this wiki you'll come across the phrase "in the style of mapcycle.txt". It means a file that has maps listed as they are in the default *mapcycle.txt* file (shown in the example below).
 <br />
 ----
 = Example =
