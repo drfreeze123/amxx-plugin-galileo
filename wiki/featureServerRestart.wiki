@@ -1,0 +1,18 @@
+#summary Feature Spotlight: Server Restart Options
+
+= Description =
+
+  Server restarts could be due to a benign reason or could be due to a map that just crashed the server. In any case, you can specify what happens when the server restarts.
+
+= Related CVARs =
+
+  == gal_srv_start _<<sub>[cvarNotations i]</sub>option>_ ==
+  Indicates which action to take when it is detected that the server has been restarted.
+{{{
+0 - stay on the map the server started with
+1 - change to the map that was being played when the server was reset
+2 - change to what would have been the next map had the server not been restarted (if the next map isn't known, this acts like 3)
+3 - start an early map vote after the first two minutes
+4 - change to a randomly selected map from your nominatable map list
+}}}
+  Default value is "*0*".
