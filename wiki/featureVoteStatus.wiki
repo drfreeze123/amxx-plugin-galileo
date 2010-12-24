@@ -1,0 +1,26 @@
+#summary Feature Spotlight: Vote Status Notification
+
+= Description =
+
+  By showing the status of the vote, you allow players to see how many votes the various choices received.
+
+= Related CVARs =
+
+  == gal_vote_showstatus _<<sub>[cvarNotations i]</sub>setting>_ ==
+  Indicates when the vote progress should be shown to a player.
+{{{  
+0 - never
+1 - after player has voted
+2 - after the vote ends
+}}}
+  Default value is "*1*".
+
+  == gal_vote_showstatustype _<<sub>[cvarNotations i]</sub>style>_ ==
+  Indicates how to show the progress of a vote.
+{{{
+1 - as vote count
+2 - as percentage of all votes cast
+}}}
+  Default value is "*2*".
+
+  The value of this CVAR is irrelevant if *gal_vote_showstatus* is set to *0*.
