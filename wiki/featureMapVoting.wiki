@@ -61,6 +61,20 @@
 
   The vote expiration countdown will display a timer to players that haven't voted, when there are 10 seconds left in the current vote. The timer counts down from 10 to 0, at which point the vote will be over.
 
+  == gal_sounds_mute _<<sub>[cvarNotations i]</sub>flags>_ ==
+  There will be words spoken during certain events to reinforce in a player's mind what is happening. You may choose to mute any that you would rather not have spoken.
+
+  Indicates if any sounds should be muted during the various events in which they'd normal be spoken.
+
+  The flags are additive. A value of *0* will not mute any of the sounds.
+{{{
+1 - "get ready to choose a map"
+2 - "7, 6, 5, 4, 3, 2, 1"
+4 - "time to choose"
+8 - "runoff voting is required"
+}}}
+  Default value is "*0*".
+
 = Related Console Commands =
 
   == gal_startvote `[`-nochange`]` ==
