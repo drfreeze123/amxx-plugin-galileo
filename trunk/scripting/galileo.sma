@@ -80,7 +80,7 @@ new Array:g_emptyCycleMap, bool:g_isUsingEmptyCycle = false, g_emptyMapCnt = 0;
 
 new Array:g_mapCycle;
 
-new g_recentMap[MAX_RECENT_MAP_CNT][MAX_MAPNAME_LEN + 1], g_cntRecentMap;
+new g_recentMap[MAX_RECENT_MAP_CNT][MAX_MAPNAME_LEN + 1], g_cntRecentMap, g_maxRecentMap;
 new Array:g_nominationMap, g_nominationMapCnt;
 new Array:g_fillerMap;
 new Float:g_rtvWait;
@@ -262,7 +262,10 @@ public plugin_cfg()
 	// initialize nominations table
 	nomination_clearAll();
 
-	if (get_pcvar_num(cvar_banRecent))
+	// ensure the server op didn't set the map count to ban too high
+	g_maxRecentMap = min(get_pcvar_num(cvar_banRecent), MAX_RECENT_MAP_CNT);
+
+	if (g_maxRecentMap)
 	{
 		register_clcmd("say recentmaps", "cmd_listrecent", 0);
 		
@@ -524,7 +527,7 @@ public map_loadRecentList()
 	if (file)
 	{
 		new buffer[32];
-		
+
 		while (!feof(file))
 		{
 			fgets(file, buffer, sizeof(buffer)-1);
@@ -532,7 +535,7 @@ public map_loadRecentList()
 
 			if (buffer[0])
 			{
-				if (g_cntRecentMap == get_pcvar_num(cvar_banRecent))
+				if (g_cntRecentMap == g_maxRecentMap)
 				{
 					break;
 				}
@@ -553,7 +556,7 @@ public map_writeRecentList()
 	{
 		fprintf(file, "%s", g_currentMap);
 
-		for (new idxMap = 0; idxMap < get_pcvar_num(cvar_banRecent) - 1; ++idxMap)
+		for (new idxMap = 0; idxMap < g_maxRecentMap - 1; ++idxMap)
 		{
 			fprintf(file, "^n%s", g_recentMap[idxMap]);
 		}
@@ -2298,7 +2301,7 @@ prefix_isInMenu(map[])
 
 map_isTooRecent(map[])
 {
-	if (get_pcvar_num(cvar_banRecent))
+	if (g_maxRecentMap)
 	{
 		for (new idxBannedMap = 0; idxBannedMap < g_cntRecentMap; ++idxBannedMap)
 		{
