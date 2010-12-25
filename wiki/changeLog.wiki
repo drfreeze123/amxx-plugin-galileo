@@ -6,7 +6,8 @@ Most recent changes are at the top.
 
 =unreleased | v1.2.xxx=
 
-  * Fixed [http://code.google.com/p/amxx-plugin-galileo/issues/detail?id=18 issue #18]; 'index out of bounds' error if gal_ban_recent is set greater than 16. Will cap the maximum maps to ban at the lesser of gal_ban_recent or of the MAX_RECENT_MAP_CNT constant. 
+  * Fixed [http://code.google.com/p/amxx-plugin-galileo/issues/detail?id=34 issue #34]; when time remaining for a vote is at 0, you can hit a 'voting' key and it shows the time at -1.
+  * Fixed [http://code.google.com/p/amxx-plugin-galileo/issues/detail?id=18 issue #18]; 'index out of bounds' error if _gal_ban_recent_ is set greater than 16. Will cap the maximum maps to ban at the lesser of gal_ban_recent or of the MAX_RECENT_MAP_CNT constant. 
   * Fixed "invalid cellvector handle provided" error when nominating maps.
   * Removed the need to include "`[`groups`]`" as the very first line when using a "groups" file.
   * Added _gal_mapfilestyle_ CVAR to indicate the style of the file specified by _gal_mapfile_.
