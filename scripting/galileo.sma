@@ -46,6 +46,7 @@ new const PLUGIN_VERSION[]  = "1.2 $Revision$"; // $Date$
 #define VOTE_IS_OVER 		8
 #define VOTE_IS_EARLY		16
 #define VOTE_HAS_EXPIRED	32
+#define VOTE_OUTCOME		64
 
 #define SRV_START_CURRENTMAP	1
 #define SRV_START_NEXTMAP		2
@@ -1452,8 +1453,7 @@ public vote_startDirector(bool:forced)
 		// display the vote outcome 
 		if (get_pcvar_num(cvar_voteStatus))
 		{
-			new arg[3] = {-1, -1, false}; // indicates it's the end of vote display
-			set_task(8.5 + float(voteDuration) + 1.0, "vote_display", _, arg, 3);
+			set_task(8.5 + float(voteDuration) + 1.0, "vote_isOver");
 			set_task(8.5 + float(voteDuration) + 6.0, "vote_expire");
 		}
 		else
@@ -1470,6 +1470,13 @@ public vote_startDirector(bool:forced)
 		dbg_log(4, "");
 		dbg_log(4, "   [PLAYER CHOICES]");
 	}
+}
+
+public vote_isOver()
+{
+	g_voteStatus |= VOTE_OUTCOME;
+	new arg[3] = {-1, -1, false}; // indicates it's the end of vote display
+	vote_display(arg);
 }
 
 public vote_countdownPendingVote()
@@ -1814,7 +1821,7 @@ public vote_display(arg[3])
 		}
 	}
 	
-	new isVoteOver = (updateTimeRemaining == -1 && id == -1);
+	new isVoteOver = (g_voteStatus & VOTE_OUTCOME);
 	new charCnt;
 
 	if (g_refreshVoteStatus || isVoteOver)
@@ -1894,7 +1901,7 @@ public vote_display(arg[3])
 	}
 
 	static voteFooter[32];
-	if (updateTimeRemaining && get_pcvar_num(cvar_voteExpCountdown))
+	if (updateTimeRemaining && get_pcvar_num(cvar_voteExpCountdown) && !(g_voteStatus & VOTE_OUTCOME))
 	{
 		charCnt = copy(voteFooter, sizeof(voteFooter)-1, "^n^n");
 		
