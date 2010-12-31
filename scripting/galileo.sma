@@ -251,6 +251,10 @@ public plugin_cfg()
 		copy(CLR_GREY, 2, "\d");
 	}
 
+	new mapName[32];
+	get_mapname(mapName, 31);
+	dbg_log(1, "[%s]", mapName);
+
 	g_rtvWait = get_pcvar_float(cvar_rtvWait);
 	get_pcvar_string(cvar_rtvDisableFlags, g_rtvDisableFlags, sizeof(g_rtvDisableFlags)-1);
 	get_pcvar_string(cvar_voteWeightFlags, g_voteWeightFlags, sizeof(g_voteWeightFlags)-1);
@@ -294,11 +298,6 @@ public plugin_cfg()
 		}
 		map_loadNominationList();
 	}
-
-	new mapName[32];
-	get_mapname(mapName, 31);
-	dbg_log(6, "[%s]", mapName);
-	dbg_log(6, "");
 
 	if (get_cvar_num("gal_server_starting"))
 	{
@@ -1926,8 +1925,6 @@ public vote_display(arg[3])
 		formatex(menuDirty, sizeof(menuDirty)-1, "%s^n^n%s%L", voteStatus, CLR_YELLOW, LANG_SERVER, "GAL_VOTE_ENDED");
 	}
 
-	new menuid, menukeys;
-
 	// display the vote
 	new showStatus = get_pcvar_num(cvar_voteStatus);
 	if (id > 0)
@@ -1943,11 +1940,7 @@ public vote_display(arg[3])
 			dbg_log(4, "        %s", menuDirty);
 			//--------------
 
-			get_user_menu(id, menuid, menukeys);
-			if (menuid == 0 || menuid == g_menuChooseMap)
-			{
-				show_menu(id, allKeys, menuDirty, max(1, g_voteDuration), MENU_CHOOSEMAP);
-			}
+			vote_showMenu(id, allKeys, menuDirty, max(1, g_voteDuration), 0);
 		}
 	}
 	else
@@ -1973,12 +1966,7 @@ public vote_display(arg[3])
 				}				
 				//--------------
 
-				get_user_menu(id, menuid, menukeys);
-				dbg_log(16, "(single player) id = %i  menuid = %i", id, menuid);
-				if (menuid == 0 || menuid == g_menuChooseMap)
-				{
-					show_menu(id, keys, menuClean, g_voteDuration, MENU_CHOOSEMAP);
-				}
+				vote_showMenu(id, keys, menuClean, g_voteDuration, 1);
 			}
 			else 
 			{
@@ -1995,12 +1983,7 @@ public vote_display(arg[3])
 					}				
 					//--------------
 
-					get_user_menu(id, menuid, menukeys);
-					dbg_log(16, "(all players) id = %i  menuid = %i", id, menuid);
-					if (menuid == 0 || menuid == g_menuChooseMap)
-					{
-						show_menu(id, allKeys, menuDirty, (isVoteOver) ? 5 : max(1, g_voteDuration), MENU_CHOOSEMAP);
-					}
+					vote_showMenu(id, allKeys, menuDirty, (isVoteOver) ? 5 : max(1, g_voteDuration), 0);
 				}
 			}
 			// dbg code ----
@@ -2011,6 +1994,27 @@ public vote_display(arg[3])
 			//--------------
 		}
 	}
+}
+
+vote_showMenu(const id, keys, const menu[], const duration = -1, newVote = 0)
+{
+	new hasMenu, menuid, newmenuid, menupage;
+	hasMenu = player_menu_info(id, menuid, newmenuid, menupage);
+	
+	new menuid2, menukeys2;
+	get_user_menu(id, menuid2, menukeys2);
+
+	if (newVote && id == 1) // && menuid2 != 0)
+	{
+		dbg_log(16, "(showmenu) id:%2i hasMenu:%i menuid:%3i newmenuid:%3i menupage:%3i menuid2:%3i menukeys2:%3i g_menuChooseMap:%3i", id, hasMenu, menuid, newmenuid, menupage, menuid2, menukeys2, g_menuChooseMap);
+	}
+
+	if (!hasMenu || (hasMenu && (menuid == g_menuChooseMap)))
+	{
+		show_menu(id, keys, menu, duration, MENU_CHOOSEMAP);
+	}
+	
+	return;
 }
 
 vote_getTallyStr(voteTally[], voteTallyLen, voteCnt)
@@ -2985,8 +2989,14 @@ dbg_log(const mode, const text[] = "", {Float,Sql,Result,_}:...)
 		format_args(formattedText, 1023, 1);
 		// grab the current game time
 		new Float:gameTime = get_gametime();
+		// format name of log file
+		new year, month, day;
+		date(year, month, day);
+		new logFile[32];
+		formatex(logFile, sizeof(logFile)-1, "gal_%i%02i%02i.log", year, month, day);
+		
 		// log text to file
-		log_to_file("_galileo.log", "{%3.4f} %s", gameTime, formattedText);
+		log_to_file(logFile, "{%3.4f} %s", gameTime, formattedText);
 		
 		if (dbg & 1 && formattedText[0])
 		{
