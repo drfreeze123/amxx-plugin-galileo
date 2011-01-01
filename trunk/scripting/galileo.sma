@@ -1781,6 +1781,48 @@ public vote_handleDisplay()
 	arg[0] = true;
 	arg[1] = 0;
 	arg[2] = false;
+
+	// dbg code
+	new voteType[32];
+	if (g_voteStatus & VOTE_IS_RUNOFF)
+	{
+		copy(voteType, sizeof(voteType)-1, "Runoff Vote");
+	}
+	else if (g_voteStatus & VOTE_IS_EARLY)
+	{
+		copy(voteType, sizeof(voteType)-1, "Early Vote");
+	}
+	else if (g_voteStatus & VOTE_FORCED)
+	{
+		copy(voteType, sizeof(voteType)-1, "Forced Vote");
+	}
+	else
+	{
+		copy(voteType, sizeof(voteType)-1, "End of Map Vote");
+	}
+		
+	new players[32], playerCnt;
+	get_players(players, playerCnt, "ch"); // skip bots and hltv
+
+	new id, hasMenu, menuid, newmenuid, menupage, menuid2, menukeys2, name[32];
+	for (new playerIdx = 0; playerIdx < playerCnt; ++playerIdx)
+	{
+		id = players[playerIdx];
+		hasMenu = player_menu_info(id, menuid, newmenuid, menupage);
+		get_user_menu(id, menuid2, menukeys2);
+
+		if (id == 1) // && menuid2 != 0)
+		{
+			if (voteType[0])
+			{
+				dbg_log(16, "(showmenu) ~%s~", voteType);
+				voteType[0] = 0;
+			}
+			get_user_name(id, name, sizeof(name)-1);
+			dbg_log(16, "(showmenu) id:%2i hasMenu:%i menuid:%3i newmenuid:%3i menupage:%3i menuid2:%3i menukeys2:%3i g_menuChooseMap:%3i name:%s", id, hasMenu, menuid, newmenuid, menupage, menuid2, menukeys2, g_menuChooseMap, name);
+		}
+	}
+	// -------
 	
 	if (get_pcvar_num(cvar_voteStatus) == SHOWSTATUS_VOTE)
 	{
@@ -1940,7 +1982,7 @@ public vote_display(arg[3])
 			dbg_log(4, "        %s", menuDirty);
 			//--------------
 
-			vote_showMenu(id, allKeys, menuDirty, max(1, g_voteDuration), 0);
+			vote_showMenu(id, allKeys, menuDirty, max(1, g_voteDuration));
 		}
 	}
 	else
@@ -1966,7 +2008,7 @@ public vote_display(arg[3])
 				}				
 				//--------------
 
-				vote_showMenu(id, keys, menuClean, g_voteDuration, 1);
+				vote_showMenu(id, keys, menuClean, g_voteDuration);
 			}
 			else 
 			{
@@ -1983,7 +2025,7 @@ public vote_display(arg[3])
 					}				
 					//--------------
 
-					vote_showMenu(id, allKeys, menuDirty, (isVoteOver) ? 5 : max(1, g_voteDuration), 0);
+					vote_showMenu(id, allKeys, menuDirty, (isVoteOver) ? 5 : max(1, g_voteDuration));
 				}
 			}
 			// dbg code ----
@@ -1996,19 +2038,11 @@ public vote_display(arg[3])
 	}
 }
 
-vote_showMenu(const id, keys, const menu[], const duration = -1, newVote = 0)
+vote_showMenu(const id, keys, const menu[], const duration = -1)
 {
-	new hasMenu, menuid, newmenuid, menupage;
-	hasMenu = player_menu_info(id, menuid, newmenuid, menupage);
+	new hasMenu, menuid, newmenuid;
+	hasMenu = player_menu_info(id, menuid, newmenuid);
 	
-	new menuid2, menukeys2;
-	get_user_menu(id, menuid2, menukeys2);
-
-	if (newVote && id == 1) // && menuid2 != 0)
-	{
-		dbg_log(16, "(showmenu) id:%2i hasMenu:%i menuid:%3i newmenuid:%3i menupage:%3i menuid2:%3i menukeys2:%3i g_menuChooseMap:%3i", id, hasMenu, menuid, newmenuid, menupage, menuid2, menukeys2, g_menuChooseMap);
-	}
-
 	if (!hasMenu || (hasMenu && (menuid == g_menuChooseMap)))
 	{
 		show_menu(id, keys, menu, duration, MENU_CHOOSEMAP);
