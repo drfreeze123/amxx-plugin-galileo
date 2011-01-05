@@ -1811,7 +1811,7 @@ public vote_handleDisplay()
 		hasMenu = player_menu_info(id, menuid, newmenuid, menupage);
 		get_user_menu(id, menuid2, menukeys2);
 
-		if (id == 1) // && menuid2 != 0)
+		if (menuid2 != 0)
 		{
 			if (voteType[0])
 			{
