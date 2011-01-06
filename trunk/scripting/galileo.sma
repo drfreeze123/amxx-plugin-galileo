@@ -39,6 +39,7 @@ new const PLUGIN_VERSION[]  = "1.2 $Revision$"; // $Date$
 #define MAX_MAPNAME_LEN		31
 #define MAX_MAPS_IN_VOTE	8
 #define MAX_NOM_MATCH_CNT	1000
+#define MAX_CLIENTCHAT_LEN	101
 
 #define VOTE_IN_PROGRESS	1
 #define VOTE_FORCED			2
@@ -164,52 +165,52 @@ public plugin_init()
 	register_concmd("gal_createmapfile", "cmd_createMapFile", ADMIN_RCON);
 
 	register_cvar("amx_nextmap", "", FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_SPONLY);
-	cvar_extendmapMax				=	register_cvar("amx_extendmap_max", "90");
+	cvar_extendmapMax			=	register_cvar("amx_extendmap_max", "90");
 	cvar_extendmapStep			=	register_cvar("amx_extendmap_step", "15");
 	
-	cvar_cmdVotemap 				= register_cvar("gal_cmd_votemap", "0");
-	cvar_cmdListmaps				= register_cvar("gal_cmd_listmaps", "2");
+	cvar_cmdVotemap 			= register_cvar("gal_cmd_votemap", "0");
+	cvar_cmdListmaps			= register_cvar("gal_cmd_listmaps", "2");
 
 	cvar_listmapsPaginate	 	= register_cvar("gal_listmaps_paginate", "10");
 	
-	cvar_banRecent					= register_cvar("gal_banrecent", "3");
+	cvar_banRecent				= register_cvar("gal_banrecent", "3");
 	cvar_banRecentStyle			= register_cvar("gal_banrecentstyle", "1");
 
-	cvar_endOnRound					= register_cvar("gal_endonround", "1");
-	cvar_endOfMapVote				= register_cvar("gal_endofmapvote", "1");
+	cvar_endOnRound				= register_cvar("gal_endonround", "1");
+	cvar_endOfMapVote			= register_cvar("gal_endofmapvote", "1");
 
-	cvar_emptyWait					=	register_cvar("gal_emptyserver_wait", "0");
-	cvar_emptyMapFile				= register_cvar("gal_emptyserver_mapfile", "");
+	cvar_emptyWait				=	register_cvar("gal_emptyserver_wait", "0");
+	cvar_emptyMapFile			= register_cvar("gal_emptyserver_mapfile", "");
 
-	cvar_srvStart						= register_cvar("gal_srv_start", "0");
+	cvar_srvStart				= register_cvar("gal_srv_start", "0");
 
-	cvar_rtvCommands				= register_cvar("gal_rtv_commands", "3");
-	cvar_rtvWait	  				= register_cvar("gal_rtv_wait", "10");
-	cvar_rtvRatio						= register_cvar("gal_rtv_ratio", "0.60");
-	cvar_rtvReminder				= register_cvar("gal_rtv_reminder", "2");
+	cvar_rtvCommands			= register_cvar("gal_rtv_commands", "3");
+	cvar_rtvWait	  			= register_cvar("gal_rtv_wait", "10");
+	cvar_rtvRatio				= register_cvar("gal_rtv_ratio", "0.60");
+	cvar_rtvReminder			= register_cvar("gal_rtv_reminder", "2");
 	cvar_rtvDisableFlags		= register_cvar("gal_rtv_disableflags", "");
 
-	cvar_nomPlayerAllowance	= register_cvar("gal_nom_playerallowance", "2");
-	cvar_nomMapFile					= register_cvar("gal_nom_mapfile", "mapcycle.txt");
-	cvar_nomPrefixes				= register_cvar("gal_nom_prefixes", "1");
-	cvar_nomQtyUsed					= register_cvar("gal_nom_qtyused", "0");
+	cvar_nomPlayerAllowance		= register_cvar("gal_nom_playerallowance", "2");
+	cvar_nomMapFile				= register_cvar("gal_nom_mapfile", "mapcycle.txt");
+	cvar_nomPrefixes			= register_cvar("gal_nom_prefixes", "1");
+	cvar_nomQtyUsed				= register_cvar("gal_nom_qtyused", "0");
 	
-	cvar_voteWeight 				= register_cvar("gal_vote_weight", "2");
+	cvar_voteWeight 			= register_cvar("gal_vote_weight", "2");
 	cvar_voteWeightFlags		= register_cvar("gal_vote_weightflags", "y");
-	cvar_voteMapFile				= register_cvar("gal_vote_mapfile", "mapcycle.txt");
-	cvar_voteMapFileStyle   = register_cvar("gal_vote_mapfilestyle", "1");
-	cvar_voteDuration				= register_cvar("gal_vote_duration", "15");
+	cvar_voteMapFile			= register_cvar("gal_vote_mapfile", "mapcycle.txt");
+	cvar_voteMapFileStyle   	= register_cvar("gal_vote_mapfilestyle", "1");
+	cvar_voteDuration			= register_cvar("gal_vote_duration", "15");
 	cvar_voteExpCountdown		= register_cvar("gal_vote_expirationcountdown", "1");
 	cvar_voteMapChoiceCnt		=	register_cvar("gal_vote_mapchoices", "5");
-	cvar_voteAnnounceChoice	= register_cvar("gal_vote_announcechoice", "1");
-	cvar_voteStatus					=	register_cvar("gal_vote_showstatus", "1");
+	cvar_voteAnnounceChoice		= register_cvar("gal_vote_announcechoice", "1");
+	cvar_voteStatus				=	register_cvar("gal_vote_showstatus", "1");
 	cvar_voteStatusType			= register_cvar("gal_vote_showstatustype", "2");
-	cvar_voteUniquePrefixes = register_cvar("gal_vote_uniqueprefixes", "0");
+	cvar_voteUniquePrefixes 	= register_cvar("gal_vote_uniqueprefixes", "0");
 	
 	cvar_runoffEnabled			= register_cvar("gal_runoff_enabled", "0");
 	cvar_runoffDuration			= register_cvar("gal_runoff_duration", "10");
 	
-	cvar_soundsMute					= register_cvar("gal_sounds_mute", "0");
+	cvar_soundsMute				= register_cvar("gal_sounds_mute", "0");
 	
 	//set_task(1.0, "dbg_test",_,_,_,"a", 15);
 }
@@ -610,7 +611,7 @@ public cmd_listrecent(id)
 	{
 		case 1:
 		{
-			new msg[101], msgIdx;
+			new msg[MAX_CLIENTCHAT_LEN], msgIdx;
 			for (new idx = 0; idx < g_cntRecentMap; ++idx)
 			{
 				msgIdx += format(msg[msgIdx], sizeof(msg)-1-msgIdx, ", %s", g_recentMap[idx]);
@@ -1320,7 +1321,7 @@ map_nominate(id, idxMap, idNominator = -1)
 public nomination_list(id)
 {
 	new idxNomination, idxMap; //, hudMessage[512];
-	new msg[101], mapCnt;
+	new msg[MAX_CLIENTCHAT_LEN], mapCnt;
 	new playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
 	new mapName[32];
 	
@@ -2899,7 +2900,7 @@ public srv_announceEarlyVote(id)
 	if (is_user_connected(id))
 	{
 		//client_print(id, print_chat, "%L", id, "GAL_VOTE_EARLY");
-		new text[101];
+		new text[MAX_CLIENTCHAT_LEN];
 		formatex(text, sizeof(text)-1, "^x04%L", id, "GAL_VOTE_EARLY");
 		print_color(id, text);
 	}
