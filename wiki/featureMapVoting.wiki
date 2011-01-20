@@ -41,6 +41,16 @@
 
   Nominations are exempt from the check for unique prefixes. Nominations are added and then Galileo will start checking the rest of the maps against the maps already added.
 
+  == gal_vote_overwritemenu _<<sub>[cvarNotations i]</sub>overwrite>_ ==
+  Indicates whether to overwrite existing menus with the map vote menu.
+{{{
+0 - only show vote menu if player isn't already shown a menu
+1 - always overwrite existing menus with the vote menu
+}}}
+  Default value is "*1*".
+
+  It is possible that, if set to "0", a player may not have an existing  menu displayed but still won't be shown the map vote menu.
+
   == gal_vote_announcechoice _<<sub>[cvarNotations i]</sub>setting>_ ==
   Indicates whether to announce each player's choice.
 {{{
