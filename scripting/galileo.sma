@@ -110,7 +110,7 @@ new cvar_nomMapFile, cvar_nomPrefixes;
 new cvar_nomQtyUsed, cvar_nomPlayerAllowance;
 new cvar_voteExpCountdown, cvar_voteWeightFlags, cvar_voteWeight;
 new cvar_voteMapChoiceCnt, cvar_voteAnnounceChoice, cvar_voteUniquePrefixes;
-new cvar_voteMapFile, cvar_voteMapFileStyle;
+new cvar_voteMapFile, cvar_voteMapFileStyle, cvar_voteOverwriteMenu;
 new cvar_srvStart;
 new cvar_emptyWait, cvar_emptyMapFile, cvar_emptyCycle;
 new cvar_runoffEnabled, cvar_runoffDuration;
@@ -206,6 +206,7 @@ public plugin_init()
 	cvar_voteStatus				=	register_cvar("gal_vote_showstatus", "1");
 	cvar_voteStatusType			= register_cvar("gal_vote_showstatustype", "2");
 	cvar_voteUniquePrefixes 	= register_cvar("gal_vote_uniqueprefixes", "0");
+	cvar_voteOverwriteMenu		= register_cvar("gal_vote_overwritemenu", "1");
 	
 	cvar_runoffEnabled			= register_cvar("gal_runoff_enabled", "0");
 	cvar_runoffDuration			= register_cvar("gal_runoff_duration", "10");
@@ -252,14 +253,11 @@ public plugin_cfg()
 		copy(CLR_GREY, 2, "\d");
 	}
 
-	new mapName[32];
-	get_mapname(mapName, 31);
-	dbg_log(1, "[%s]", mapName);
-
 	g_rtvWait = get_pcvar_float(cvar_rtvWait);
 	get_pcvar_string(cvar_rtvDisableFlags, g_rtvDisableFlags, sizeof(g_rtvDisableFlags)-1);
 	get_pcvar_string(cvar_voteWeightFlags, g_voteWeightFlags, sizeof(g_voteWeightFlags)-1);
 	get_mapname(g_currentMap, sizeof(g_currentMap)-1);
+	dbg_log(1, "[%s]", g_currentMap);
 	g_choiceMax = max(min(MAX_MAPS_IN_VOTE, get_pcvar_num(cvar_voteMapChoiceCnt)), 2);
 //	g_nonOverlapHudSync = CreateHudSyncObj();
 	g_fillerMap = ArrayCreate(32);
@@ -1816,11 +1814,11 @@ public vote_handleDisplay()
 		{
 			if (voteType[0])
 			{
-				dbg_log(16, "(showmenu) ~%s~", voteType);
+				dbg_log(16, "(showmenu1) ~%s~  ~%s~", voteType, g_currentMap);
 				voteType[0] = 0;
 			}
 			get_user_name(id, name, sizeof(name)-1);
-			dbg_log(16, "(showmenu) id:%2i hasMenu:%i menuid:%3i newmenuid:%3i menupage:%3i menuid2:%3i menukeys2:%3i g_menuChooseMap:%3i name:%s", id, hasMenu, menuid, newmenuid, menupage, menuid2, menukeys2, g_menuChooseMap, name);
+			dbg_log(16, "(showmenu1) hasMenu:%i menuid:%3i newmenuid:%3i menuid2:%3i menukeys2:%3i g_menuChooseMap:%3i name:%s", hasMenu, menuid, newmenuid, menuid2, menukeys2, g_menuChooseMap, name);
 		}
 	}
 	// -------
@@ -2044,9 +2042,18 @@ vote_showMenu(const id, keys, const menu[], const duration = -1)
 	new hasMenu, menuid, newmenuid;
 	hasMenu = player_menu_info(id, menuid, newmenuid);
 	
-	if (!hasMenu || (hasMenu && (menuid == g_menuChooseMap)))
+	if (!hasMenu || (hasMenu && ((menuid == g_menuChooseMap) || get_pcvar_num(cvar_voteOverwriteMenu))))
 	{
 		show_menu(id, keys, menu, duration, MENU_CHOOSEMAP);
+	}
+	else
+	{
+		// dbg
+		new menuid2, menukeys2, name[32];
+		get_user_menu(id, menuid2, menukeys2);
+		get_user_name(id, name, sizeof(name)-1);
+
+		dbg_log(16, "(showmenu2) hasMenu:%i menuid:%3i newmenuid:%3i menuid2:%3i menukeys2:%3i g_menuChooseMap:%3i name:%s", hasMenu, menuid, newmenuid, menuid2, menukeys2, g_menuChooseMap, name);
 	}
 	
 	return;
