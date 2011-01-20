@@ -165,8 +165,8 @@ public plugin_init()
 	register_concmd("gal_createmapfile", "cmd_createMapFile", ADMIN_RCON);
 
 	register_cvar("amx_nextmap", "", FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_SPONLY);
-	cvar_extendmapMax			=	register_cvar("amx_extendmap_max", "90");
-	cvar_extendmapStep			=	register_cvar("amx_extendmap_step", "15");
+	cvar_extendmapMax			= register_cvar("amx_extendmap_max", "90");
+	cvar_extendmapStep			= register_cvar("amx_extendmap_step", "15");
 	
 	cvar_cmdVotemap 			= register_cvar("gal_cmd_votemap", "0");
 	cvar_cmdListmaps			= register_cvar("gal_cmd_listmaps", "2");
@@ -179,7 +179,7 @@ public plugin_init()
 	cvar_endOnRound				= register_cvar("gal_endonround", "1");
 	cvar_endOfMapVote			= register_cvar("gal_endofmapvote", "1");
 
-	cvar_emptyWait				=	register_cvar("gal_emptyserver_wait", "0");
+	cvar_emptyWait				= register_cvar("gal_emptyserver_wait", "0");
 	cvar_emptyMapFile			= register_cvar("gal_emptyserver_mapfile", "");
 
 	cvar_srvStart				= register_cvar("gal_srv_start", "0");
@@ -201,9 +201,9 @@ public plugin_init()
 	cvar_voteMapFileStyle   	= register_cvar("gal_vote_mapfilestyle", "1");
 	cvar_voteDuration			= register_cvar("gal_vote_duration", "15");
 	cvar_voteExpCountdown		= register_cvar("gal_vote_expirationcountdown", "1");
-	cvar_voteMapChoiceCnt		=	register_cvar("gal_vote_mapchoices", "5");
+	cvar_voteMapChoiceCnt		= register_cvar("gal_vote_mapchoices", "5");
 	cvar_voteAnnounceChoice		= register_cvar("gal_vote_announcechoice", "1");
-	cvar_voteStatus				=	register_cvar("gal_vote_showstatus", "1");
+	cvar_voteStatus				= register_cvar("gal_vote_showstatus", "1");
 	cvar_voteStatusType			= register_cvar("gal_vote_showstatustype", "2");
 	cvar_voteUniquePrefixes 	= register_cvar("gal_vote_uniqueprefixes", "0");
 	cvar_voteOverwriteMenu		= register_cvar("gal_vote_overwritemenu", "1");
