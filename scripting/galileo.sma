@@ -110,7 +110,7 @@ new cvar_nomMapFile, cvar_nomPrefixes;
 new cvar_nomQtyUsed, cvar_nomPlayerAllowance;
 new cvar_voteExpCountdown, cvar_voteWeightFlags, cvar_voteWeight;
 new cvar_voteMapChoiceCnt, cvar_voteAnnounceChoice, cvar_voteUniquePrefixes;
-new cvar_voteMapFile, cvar_voteMapFileStyle, cvar_voteOverwriteMenu;
+new cvar_voteMapFile, cvar_voteMapFileStyle, cvar_voteOverwriteMenu, cvar_voteRandomOrder;
 new cvar_srvStart;
 new cvar_emptyWait, cvar_emptyMapFile, cvar_emptyCycle;
 new cvar_runoffEnabled, cvar_runoffDuration;
@@ -207,6 +207,7 @@ public plugin_init()
 	cvar_voteStatusType			= register_cvar("gal_vote_showstatustype", "2");
 	cvar_voteUniquePrefixes 	= register_cvar("gal_vote_uniqueprefixes", "0");
 	cvar_voteOverwriteMenu		= register_cvar("gal_vote_overwritemenu", "1");
+	cvar_voteRandomOrder		= register_cvar("gal_vote_randomorder", "0");
 	
 	cvar_runoffEnabled			= register_cvar("gal_runoff_enabled", "0");
 	cvar_runoffDuration			= register_cvar("gal_runoff_duration", "10");
@@ -1415,8 +1416,16 @@ public vote_startDirector(bool:forced)
 	
 	if (choicesLoaded)
 	{
-		// alphabetize the maps
-		SortCustom2D(g_mapChoice, choicesLoaded, "sort_stringsi");
+		if (get_pcvar_num(cvar_voteRandomOrder))
+		{
+			// randomize the maps
+			SortCustom2D(g_mapChoice, choicesLoaded, "sort_random");
+		}
+		else
+		{
+			// alphabetize the maps
+			SortCustom2D(g_mapChoice, choicesLoaded, "sort_stringsi");
+		}
 
 		// dbg code ----
 		if (get_realplayersnum())
@@ -1635,7 +1644,7 @@ vote_addFiller()
 				// randomize the order that we read the contents of the group files				
 				if (get_pcvar_num(cvar_voteMapFileStyle) == MAPFILESTYLE_GROUPS_RANDOM)
 				{
-					SortCustom2D(fillerFile, groupCnt, "vote_randomizeFillerGroups");
+					SortCustom2D(fillerFile, groupCnt, "sort_random");
 				}
 			}
 			else
@@ -1703,11 +1712,6 @@ vote_addFiller()
 			}
 		}
 	}
-}
-
-public vote_randomizeFillerGroups(const elem1[], const elem2[], const array[], data[], data_size)
-{
-	return (random(61) > 29 ? 0 : -1);
 }
 
 vote_loadChoices()
@@ -2987,6 +2991,11 @@ has_flag(id, flags[])
 public sort_stringsi(const elem1[], const elem2[], const array[], data[], data_size)
 {
 	return strcmp(elem1, elem2, 1);
+}
+
+public sort_random(const elem1[], const elem2[], const array[], data[], data_size)
+{
+	return (random(61) > 29 ? 0 : -1);
 }
 
 stock get_realplayersnum()
