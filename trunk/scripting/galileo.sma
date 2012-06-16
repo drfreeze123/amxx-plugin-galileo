@@ -116,6 +116,7 @@ new cvar_emptyWait, cvar_emptyMapFile, cvar_emptyCycle;
 new cvar_runoffEnabled, cvar_runoffDuration;
 new cvar_voteStatus, cvar_voteStatusType;
 new cvar_soundsMute;
+new cvar_currentMap;
 
 public plugin_init()
 {
@@ -132,6 +133,7 @@ public plugin_init()
 	
 	register_cvar("gal_server_starting", "1", FCVAR_SPONLY);
 	cvar_emptyCycle = register_cvar("gal_in_empty_cycle", "0", FCVAR_SPONLY);
+	cvar_currentMap = register_cvar("gal_map_current", "", FCVAR_SPONLY); // this only used when gal_endofmapvote set to 0
 
 	register_cvar("gal_debug", "0");
 
@@ -241,6 +243,33 @@ public dbg_fakeVotes()
 
 public plugin_cfg()
 {
+	// if end of map voting is off and we're coming back from a voted map, resume cycle
+	if (get_pcvar_num(cvar_endOfMapVote) == 0)
+	{
+		new currentMap[MAX_MAPNAME_LEN+1];
+		get_pcvar_string(cvar_currentMap, currentMap, sizeof(currentMap)-1);
+		
+		// if we're storing a map name, it means we're back from a voted map
+		if (currentMap[0])
+		{
+			// reset the super-secret secret that's super
+			set_pcvar_string(cvar_currentMap, "");
+
+			// get what should've been the next map
+			new nextMap[MAX_MAPNAME_LEN+1];
+			g_mapCycle = ArrayCreate(32);
+			map_populateList(g_mapCycle, "mapcycle.txt");
+			map_getNext(g_mapCycle, currentMap, nextMap);	
+			
+			// attempt to resume the map cycle
+			trim(nextMap);
+			if (nextMap[0] && is_map_valid(nextMap))
+			{
+				server_cmd("changelevel %s", nextMap);
+			}
+		}
+	}
+
 	formatex(DIR_CONFIGS[get_configsdir(DIR_CONFIGS, sizeof(DIR_CONFIGS)-1)], sizeof(DIR_CONFIGS)-1, "/galileo");
 	formatex(DIR_DATA[get_datadir(DIR_DATA, sizeof(DIR_DATA)-1)], sizeof(DIR_DATA)-1, "/galileo");
 
@@ -2266,6 +2295,19 @@ public vote_expire()
 		client_print(0, print_chat, "%L", LANG_PLAYER, "GAL_WINNER_RANDOM", g_mapChoice[idxWinner]);
 		
 		g_voteStatus |= VOTE_IS_OVER;
+	}
+
+	// store the current map so we can resume the map cycle after the next map
+	if ((get_pcvar_num(cvar_endOfMapVote) == 0) && (g_voteStatus & VOTE_IS_OVER))
+	{
+		new currentMap[MAX_MAPNAME_LEN+1];
+		get_pcvar_string(cvar_currentMap, currentMap, sizeof(currentMap)-1);
+		
+		// if we're already storing a map name, it means we already have one to use
+		if (currentMap[0] == 0)
+		{
+			set_pcvar_string(cvar_currentMap, g_currentMap);
+		}
 	}
 	
 	g_refreshVoteStatus = true;
