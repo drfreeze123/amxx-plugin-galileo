@@ -2902,19 +2902,17 @@ public client_disconnect(id)
 		nomination_announceCancellation(nominatedMaps);
 	}
 
-	new dbg_playerCnt = get_realplayersnum()-1;
-	dbg_log(2, "%32s dbg_playerCnt:%i", "client_disconnect()", dbg_playerCnt);
-
-	if (dbg_playerCnt == 0)
+	new playerCnt = get_realplayersnum();
+	if (playerCnt == 0 || (get_cvar_num("gal_debug") & 2 && playerCnt - 1 == 0))
 	{
+		dbg_log(2, "%32s dbg_playerCnt:%i", "client_disconnect()", playerCnt-1);
 		srv_handleEmpty();
 	}
 }
 
 public client_connect(id)
 {
-	set_pcvar_num(cvar_emptyCycle, 0);
-	
+	srv_endEmptyCycle();
 	vote_unrock(id);
 }
 
@@ -2963,7 +2961,7 @@ public srv_initEmptyCheck()
 {
 	if (get_pcvar_num(cvar_emptyWait))
 	{
-		if ((get_realplayersnum()) == 0 && !get_pcvar_num(cvar_emptyCycle))
+		if ((get_realplayersnum() == 0 || get_cvar_num("gal_debug") & 2) && !get_pcvar_num(cvar_emptyCycle))
 		{
 			srv_startEmptyCountdown();
 		}
@@ -2977,11 +2975,13 @@ srv_startEmptyCountdown()
 	if (waitMinutes)
 	{
 		set_task(float(waitMinutes * 60), "srv_startEmptyCycle", TASKID_EMPTYSERVER);
+		dbg_log(2, "!task 'srv_startEmptyCycle' started");
 	}
 }
 
 public srv_startEmptyCycle()
 {
+	dbg_log(2, "!function 'srv_startEmptyCycle' called");
 	set_pcvar_num(cvar_emptyCycle, 1);
 	
 	// set the next map from the empty cycle list,
@@ -2995,6 +2995,16 @@ public srv_startEmptyCycle()
 	if (mapIdx == -1)
 	{
 		map_change();
+	}
+}
+
+public srv_endEmptyCycle()
+{
+	dbg_log(2, "!function 'srv_endEmptyCycle' called (%i)", get_pcvar_num(cvar_emptyCycle));
+	if (get_pcvar_num(cvar_emptyCycle))
+	{
+		remove_task(TASKID_EMPTYSERVER);
+		set_pcvar_num(cvar_emptyCycle, 0);
 	}
 }
 
