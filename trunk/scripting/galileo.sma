@@ -362,37 +362,34 @@ config_load()
 	formatex(configFilename, sizeof(configFilename)-1, "%s/galileo.cfg", DIR_CONFIGS);
 
 	new file = fopen(configFilename, "rt");
-	if (file)
-	{
-		new buffer[512], cvar[32], value[480];
+	if (file) {
+		new buffer[512], cvar[32], value[480], junk[480];
 		
-		while (!feof(file))
-		{
+		while (!feof(file)) {
 			fgets(file, buffer, sizeof(buffer)-1);
 			trim(buffer);
-			
-			if (buffer[0] && !equal(buffer, "//", 2) && !equal(buffer, ";", 1))
-			{
+			if (buffer[0] && !equal(buffer, "//", 2) && !equal(buffer, ";", 1)) {
+				dbg_log(128, "buffer: %s", buffer);
 				strbreak(buffer, cvar, sizeof(cvar)-1, value, sizeof(value)-1);
-
-				if (value[0] == 0 || isalpha(value[0]))
-				{
-					set_cvar_string(cvar, value);
-				}
-				else if (contain(value, "."))
-				{
-					set_cvar_float(cvar, floatstr(value));
-				}
-				else
-				{
+				dbg_log(128, "cvar: %s, value: %s", cvar, value);
+				if (is_str_num(value)) {
+					dbg_log(128, "number: %i", str_to_num(value));
 					set_cvar_num(cvar, str_to_num(value));
+				} else {
+					copy(junk, sizeof(junk)-1, value);
+					if (replace(junk, sizeof(junk)-1, ".", "") && is_str_num(junk)) {
+						dbg_log(128, "float: %f", floatstr(value));
+						set_cvar_float(cvar, floatstr(value));
+					} else {
+						dbg_log(128, "string: %s", value);
+						replace(value, sizeof(value)-1, "^"", "");
+						set_cvar_string(cvar, value);
+					}
 				}
 			}
 		}
 		fclose(file);
-	}
-	else
-	{
+	} else {
 		log_error(AMX_ERR_NOTFOUND, "%L", LANG_SERVER, "GAL_CONFIG_FILEMISSING", configFilename);
 	}
 }
