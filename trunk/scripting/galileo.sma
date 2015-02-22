@@ -2565,6 +2565,19 @@ public vote_rock(id)
 		client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_PENDINGVOTE");
 		return;
 	}
+
+	// rocks can only be made if a vote isn't already in progress
+	if (g_voteStatus & VOTE_IN_PROGRESS)
+	{
+		client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_INPROGRESS");
+		return;
+	}
+	// and if the outcome of the vote hasn't already been determined
+	else if (g_voteStatus & VOTE_IS_OVER)
+	{
+		client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_VOTEOVER");
+		return;
+	}
 	
 	new Float:minutesElapsed = map_getMinutesElapsed();
 	
@@ -2585,29 +2598,15 @@ public vote_rock(id)
 		}
 	}
 
-	// rocks can only be made if a vote isn't already in progress
-	if (g_voteStatus & VOTE_IN_PROGRESS)
-	{
-		client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_INPROGRESS");
-		return;
-	}
-	// and if the outcome of the vote hasn't already been determined
-	else if (g_voteStatus & VOTE_IS_OVER)
-	{
-		client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_VOTEOVER");
-		return;
-	}
-	
-	// determine how many total rocks are needed
-	new rocksNeeded = vote_getRocksNeeded();
-
 	// make sure player hasn't already rocked the vote
 	if (g_rockedVote[id])
 	{
-		client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_ALREADY", rocksNeeded - g_rockedVoteCnt);
+		client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_ALREADY");
 		rtv_remind(TASKID_REMINDER + id);
 		return;
 	}
+	// determine how many total rocks are needed
+	new rocksNeeded = vote_getRocksNeeded();
 
 	// allow the player to rock the vote
 	g_rockedVote[id] = true;
