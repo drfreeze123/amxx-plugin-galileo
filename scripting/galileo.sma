@@ -1737,6 +1737,8 @@ vote_addFiller()
 
 vote_loadChoices()
 {
+	g_choiceCnt = 0;
+	
 	vote_addNominations();
 	vote_addFiller();
 	
