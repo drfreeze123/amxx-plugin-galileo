@@ -385,7 +385,7 @@ config_load()
 		}
 		fclose(file);
 	} else {
-		log_error(AMX_ERR_NOTFOUND, "%L", LANG_SERVER, "GAL_CONFIG_FILEMISSING", configFilename);
+		log_amx("%L", LANG_SERVER, "GAL_CONFIG_FILEMISSING", configFilename);
 	}
 }
 
@@ -588,7 +588,7 @@ public map_writeRecentList()
 	}
 	else
 	{
-		log_error(AMX_ERR_NOTFOUND, "%L", LANG_SERVER, "GAL_MAPS_FILEMISSING", filename);
+		log_amx("%L", LANG_SERVER, "GAL_MAPS_FILEMISSING", filename);
 	}
 }
 
@@ -713,7 +713,7 @@ map_populateList(&Array:mapArray, mapFilename[])
 		}
 		else
 		{
-			log_error(AMX_ERR_NOTFOUND, "%L", LANG_SERVER, "GAL_MAPS_FILEMISSING", mapFilename);
+			log_amx("%L", LANG_SERVER, "GAL_MAPS_FILEMISSING", mapFilename);
 		}
 	}
 	else
@@ -744,7 +744,7 @@ map_populateList(&Array:mapArray, mapFilename[])
 		else
 		{
 			// directory not found, wtf?
-			log_error(AMX_ERR_NOTFOUND, "%L", LANG_SERVER, "GAL_MAPS_FOLDERMISSING");
+			log_amx("%L", LANG_SERVER, "GAL_MAPS_FOLDERMISSING");
 		}
 	}
 	return mapCnt;	
@@ -853,7 +853,7 @@ public map_loadPrefixList()
 				}
 				else
 				{
-					log_error(AMX_ERR_BOUNDS, "%L", LANG_SERVER, "GAL_PREFIXES_TOOMANY", MAX_PREFIX_CNT, filename);
+					log_amx("%L", LANG_SERVER, "GAL_PREFIXES_TOOMANY", MAX_PREFIX_CNT, filename);
 					break;
 				}
 			}
@@ -862,7 +862,7 @@ public map_loadPrefixList()
 	}
 	else
 	{
-		log_error(AMX_ERR_NOTFOUND, "%L", LANG_SERVER, "GAL_PREFIXES_NOTFOUND", filename);
+		log_amx("%L", LANG_SERVER, "GAL_PREFIXES_NOTFOUND", filename);
 	}
 	return PLUGIN_HANDLED;
 }
@@ -1648,7 +1648,7 @@ vote_addFiller()
 						}
 						else
 						{
-							log_error(AMX_ERR_BOUNDS, "%L", LANG_SERVER, "GAL_GRP_FAIL_TOOMANY", filename);
+							log_amx("%L", LANG_SERVER, "GAL_GRP_FAIL_TOOMANY", filename);
 							break;
 						}
 					}
@@ -1658,7 +1658,7 @@ vote_addFiller()
 				
 				if (groupCnt == 0)
 				{
-					log_error(AMX_ERR_GENERAL, "%L", LANG_SERVER, "GAL_GRP_FAIL_NOCOUNTS", filename);
+					log_amx("%L", LANG_SERVER, "GAL_GRP_FAIL_NOCOUNTS", filename);
 					return;
 				}
 
@@ -1678,7 +1678,7 @@ vote_addFiller()
 		}
 		else
 		{
-			log_error(AMX_ERR_NOTFOUND, "%L", LANG_SERVER, "GAL_FILLER_NOTFOUND", fillerFile);
+			log_amx("%L", LANG_SERVER, "GAL_FILLER_NOTFOUND", fillerFile);
 		}
 	}
 	else
