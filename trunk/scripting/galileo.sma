@@ -90,6 +90,7 @@ new bool:g_rockedVote[MAX_PLAYER_CNT + 1], g_rockedVoteCnt;
 
 new g_mapChoice[MAX_MAPS_IN_VOTE + 1][MAX_MAPNAME_LEN + 1], g_choiceCnt, g_choiceMax;
 new bool:g_voted[MAX_PLAYER_CNT + 1] = {true, ...}, g_mapVote[MAX_MAPS_IN_VOTE + 1];
+new bool:g_initDisplay[MAX_PLAYER_CNT + 1] = {true, ...};
 new g_voteStatus, g_voteDuration, g_votesCast;
 new g_runoffChoice[2];
 new g_vote[512];
@@ -377,7 +378,8 @@ config_load()
 					if (replace(junk, sizeof(junk)-1, ".", "") && is_str_num(junk)) {
 						set_cvar_float(cvar, floatstr(value));
 					} else {
-						replace(value, sizeof(value)-1, "^"", "");
+						replace(value, sizeof(value)-1, "^"", ""); 
+						// "
 						set_cvar_string(cvar, value);
 					}
 				}
@@ -1464,6 +1466,7 @@ public vote_startDirector(bool:forced)
 		for (new idxPlayer = 0; idxPlayer < playerCnt; ++idxPlayer)
 		{
 			g_voted[player[idxPlayer]] = false;
+			g_initDisplay[player[idxPlayer]] = true;
 		}
 
 		// make perfunctory announcement: "get ready to choose a map"
@@ -2066,12 +2069,14 @@ public vote_display(arg[3])
 
 vote_showMenu(const id, keys, const menu[], const duration = -1)
 {
-	new hasMenu, menuid, newmenuid;
+	new hasMenu, menuid, newmenuid, voteOverwrite;
 	hasMenu = player_menu_info(id, menuid, newmenuid);
+	voteOverwrite = get_pcvar_num(cvar_voteOverwriteMenu);
 	
-	if (!hasMenu || (hasMenu && ((menuid == g_menuChooseMap) || get_pcvar_num(cvar_voteOverwriteMenu))))
+	if (!hasMenu || (hasMenu && ((menuid == g_menuChooseMap) || voteOverwrite == 1 || (voteOverwrite == 2 && g_initDisplay[id]))))
 	{
 		show_menu(id, keys, menu, duration, MENU_CHOOSEMAP);
+		g_initDisplay[id] = false;
 	}
 	else
 	{
