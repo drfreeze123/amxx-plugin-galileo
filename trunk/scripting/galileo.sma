@@ -569,6 +569,10 @@ public map_loadRecentList()
 		}
 		fclose(file);
 	}
+	else
+	{
+		log_amx("%L (map_loadRecentList)", LANG_SERVER, "GAL_MAPS_FILEMISSING", filename);
+	}
 }
 
 public map_writeRecentList()
@@ -590,7 +594,7 @@ public map_writeRecentList()
 	}
 	else
 	{
-		log_amx("%L", LANG_SERVER, "GAL_MAPS_FILEMISSING", filename);
+		log_amx("%L (map_writeRecentList)", LANG_SERVER, "GAL_MAPS_FILEMISSING", filename);
 	}
 }
 
